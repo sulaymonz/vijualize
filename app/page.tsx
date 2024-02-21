@@ -2,7 +2,7 @@ export default function Home() {
   return (
     <main>
       <div className="container mx-auto">
-        <h1 className="my-5 text-3xl text-primary text-center">
+        <h1 className="my-5 text-3xl text-center">
           Lorem ipsum dolor sit amet
         </h1>
         <p className="my-3">
