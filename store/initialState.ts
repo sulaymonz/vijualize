@@ -13,6 +13,9 @@ const initialState = {
     palette: ['606c38', '283618', 'fefae0', 'dda15e', 'bc6c25'],
     paletteIndex: 0,
   },
+  landing: {
+    category: 'Outfit',
+  },
 };
 
 export default initialState;

@@ -1,17 +1,17 @@
-import "./globals.css";
-import ReduxProvider from "./ReduxProvider";
-import Navbar from "./components/Navbar";
+import './globals.css';
+import ReduxProvider from './ReduxProvider';
+import Navbar from './components/Navbar';
 
 export const metadata = {
-  title: "Vijualize",
+  title: 'Vijualize',
   description:
-    "A website for generating color palettes and visualizing them on amazing designs.",
+    'A website for generating color palettes and visualizing them on amazing designs.',
 };
 
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className="text-black bg-white">
+      <body className="text-black bg-white text-sm">
         <ReduxProvider>
           <Navbar />
           {children}

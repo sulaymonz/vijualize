@@ -14,10 +14,10 @@ const Navbar = () => {
               <Link href="/">Generate</Link>
             </li>
             <li className="mr-4 lg:mr-8">
-              <Link href="/courses">Explore</Link>
+              <Link href="/">Explore</Link>
             </li>
             <li className="mr-4 lg:mr-8">
-              <Link href="/about">About</Link>
+              <Link href="/">About</Link>
             </li>
           </ul>
 
