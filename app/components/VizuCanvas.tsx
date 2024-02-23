@@ -1,15 +1,15 @@
-"use client";
+'use client';
 
-import { useState, useEffect, useRef } from "react";
-import { useSelector } from "react-redux";
-import resolveConfig from "tailwindcss/resolveConfig";
-import tailwindConfig from "../../tailwind.config";
-import LoadingSpinner from "./LoadingSpinner";
+import { useState, useEffect, useRef } from 'react';
+import { useSelector } from 'react-redux';
+import resolveConfig from 'tailwindcss/resolveConfig';
+import tailwindConfig from '../../tailwind.config';
+import LoadingSpinner from './LoadingSpinner';
 
 const fullConfig = resolveConfig(tailwindConfig);
 let curLoadedResNum = 0;
 
-const Canvas = ({ images, onClick }) => {
+const Canvas = ({ images, onClick = () => {} }) => {
   const totalResToLoad = images.length;
   const onScreenCvsRef = useRef();
   const onScreenCtxRef = useRef();
@@ -22,14 +22,12 @@ const Canvas = ({ images, onClick }) => {
     let cvsIndex = 0;
     onScreenCtxRef.current.clearRect(0, 0, 500, 600);
     itemImages.forEach((image, i) => {
-      if (images[i].layerType === "dynamic_color") {
-        cvsArr.current[cvsIndex].context.globalCompositeOperation = "normal";
+      if (images[i].layerType === 'dynamic_color') {
+        cvsArr.current[cvsIndex].context.globalCompositeOperation = 'normal';
         cvsArr.current[cvsIndex].context.clearRect(0, 0, 1500, 1800);
         cvsArr.current[cvsIndex].context.drawImage(image, 0, 0);
-        cvsArr.current[cvsIndex].context.globalCompositeOperation = "source-in";
-        cvsArr.current[cvsIndex].context.fillStyle = `#${
-          palette[cvsIndex + 1]
-        }`;
+        cvsArr.current[cvsIndex].context.globalCompositeOperation = 'source-in';
+        cvsArr.current[cvsIndex].context.fillStyle = `#${palette[cvsIndex]}`;
         cvsArr.current[cvsIndex].context.fillRect(0, 0, 1500, 1800);
         onScreenCtxRef.current.drawImage(
           cvsArr.current[cvsIndex].canvas,
@@ -73,31 +71,31 @@ const Canvas = ({ images, onClick }) => {
   }, [palette]);
 
   useEffect(() => {
-    onScreenCtxRef.current = onScreenCvsRef.current.getContext("2d");
+    onScreenCtxRef.current = onScreenCvsRef.current.getContext('2d');
 
     setItemImages([]);
     const tempImages = [];
     images.forEach((image, i) => {
-      if (image.layerType === "dynamic_color") {
-        const cvs = document.createElement("canvas");
+      if (image.layerType === 'dynamic_color') {
+        const cvs = document.createElement('canvas');
         cvs.width = 1500;
         cvs.height = 1800;
         cvsArr.current.push({
           canvas: cvs,
-          context: cvs.getContext("2d"),
+          context: cvs.getContext('2d'),
         });
       }
       let img = new Image();
       img.src = image.src;
       tempImages.push(img);
       img.index = i;
-      img.addEventListener("load", handleImageLoad);
+      img.addEventListener('load', handleImageLoad);
     });
 
     return () => {
       // clearing things up on component unmount
       tempImages.forEach((image) => {
-        image.removeEventListener("load", handleImageLoad);
+        image.removeEventListener('load', handleImageLoad);
       });
       curLoadedResNum = 0;
     };

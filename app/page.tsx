@@ -5,7 +5,7 @@ export default function Home() {
     <main>
       <div className="container mx-auto">
         <Landing />
-        <h1 className="mt-10 mb-5 text-3xl text-center">
+        <h1 className="mt-10 mb-5 text-3xl text-center font-light">
           Lorem ipsum dolor sit amet
         </h1>
         <p className="my-3">

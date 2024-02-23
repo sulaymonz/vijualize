@@ -2,7 +2,7 @@ import SidebarTab from './SidebarTab';
 
 export default function Sidebar() {
   return (
-    <div className="flex flex-row justify-start items-center h-full font-mono bg-black text-white">
+    <div className="flex flex-row justify-start items-center h-full font-mono">
       <ul>
         <SidebarTab title="Outfit" />
         <SidebarTab title="Tech" />

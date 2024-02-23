@@ -9,7 +9,7 @@ export default function SidebarTab({ title }) {
   return (
     <li className="flex justify-start items-center">
       <span
-        className="h-[1px] bg-white transition-all"
+        className="h-[1px] bg-black transition-all"
         style={{ width: category === title ? '40px' : '0' }}
       ></span>
       <span
