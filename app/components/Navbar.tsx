@@ -19,6 +19,9 @@ const Navbar = () => {
             <li className="mr-4 lg:mr-8">
               <Link href="/">About</Link>
             </li>
+            <li className="mr-4 lg: mr-8">
+              <Link href="/colorlab">Color_Lab</Link>
+            </li>
           </ul>
 
           <ul className="flex items-end justify-end">

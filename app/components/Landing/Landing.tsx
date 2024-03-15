@@ -1,13 +1,15 @@
 'use client';
 
 import { useSelector, useDispatch } from 'react-redux';
-import * as exerciseActions from '../../../store/actions/exerciseActions';
+import * as landingActions from '../../../store/actions/landingActions';
 import RefreshIcon from '@mui/icons-material/Refresh';
 import Sidebar from './Sidebar';
 import VizuCanvas from '../VizuCanvas';
+import { generateMonochromePalette } from '@/app/utils/paletteGenerators';
+import { HSVtoRGB, RGBtoHEX } from '@/app/utils/converters';
 
 export default function Landing() {
-  const { palette } = useSelector((state) => state.exercise);
+  const { palette } = useSelector((state) => state.landing);
   const dispatch = useDispatch();
 
   const images = [
@@ -67,28 +69,35 @@ export default function Landing() {
             <div className="w-80 h-32 flex flex-row justify-center gap-2">
               <div
                 className="w-1/5 h-full rounded-full shadow-lg"
-                style={{ backgroundColor: `#${palette[0]}` }}
+                style={{ backgroundColor: palette[0].hex }}
               />
               <div
                 className="w-1/5 h-full rounded-full shadow-lg"
-                style={{ backgroundColor: `#${palette[1]}` }}
+                style={{ backgroundColor: palette[1].hex }}
               />
               <div
                 className="w-1/5 h-full rounded-full shadow-lg"
-                style={{ backgroundColor: `#${palette[2]}` }}
+                style={{ backgroundColor: palette[2].hex }}
               />
               <div
                 className="w-1/5 h-full rounded-full shadow-lg"
-                style={{ backgroundColor: `#${palette[3]}` }}
+                style={{ backgroundColor: palette[3].hex }}
               />
               <div
                 className="w-1/5 h-full rounded-full shadow-lg"
-                style={{ backgroundColor: `#${palette[4]}` }}
+                style={{ backgroundColor: palette[4].hex }}
               />
             </div>
             <div className="flex flex-row justify-center my-8 text-lg font-mono cursor-pointer">
               <RefreshIcon fontSize="large" />
-              <button onClick={() => dispatch(exerciseActions.updatePalette())}>
+              <button
+                onClick={() => {
+                  const newPalette = generateMonochromePalette(5).map(
+                    (hsv) => ({ hex: RGBtoHEX(HSVtoRGB(hsv)) }),
+                  );
+                  dispatch(landingActions.landingPaletteUpdated(newPalette));
+                }}
+              >
                 regenerate_
               </button>
             </div>

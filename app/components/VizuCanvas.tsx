@@ -16,7 +16,7 @@ const Canvas = ({ images, onClick = () => {} }) => {
   const cvsArr = useRef([]);
   const [loading, setLoading] = useState(true);
   const [itemImages, setItemImages] = useState([]);
-  const { palette } = useSelector((state) => state.exercise);
+  const { palette } = useSelector((state) => state.landing);
 
   const redrawCanvas = () => {
     let cvsIndex = 0;
@@ -27,7 +27,7 @@ const Canvas = ({ images, onClick = () => {} }) => {
         cvsArr.current[cvsIndex].context.clearRect(0, 0, 1500, 1800);
         cvsArr.current[cvsIndex].context.drawImage(image, 0, 0);
         cvsArr.current[cvsIndex].context.globalCompositeOperation = 'source-in';
-        cvsArr.current[cvsIndex].context.fillStyle = `#${palette[cvsIndex]}`;
+        cvsArr.current[cvsIndex].context.fillStyle = palette[cvsIndex].hex;
         cvsArr.current[cvsIndex].context.fillRect(0, 0, 1500, 1800);
         onScreenCtxRef.current.drawImage(
           cvsArr.current[cvsIndex].canvas,

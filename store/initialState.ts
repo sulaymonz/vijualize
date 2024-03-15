@@ -15,6 +15,13 @@ const initialState = {
   },
   landing: {
     category: 'Outfit',
+    palette: [
+      { hex: '#07beb8', h: 178, s: 96, v: 74 },
+      { hex: '#3dccc7', h: 177, s: 70, v: 80 },
+      { hex: '#68d8d6', h: 178, s: 51, v: 84 },
+      { hex: '#9ceaef', h: 183, s: 34, v: 93 },
+      { hex: '#c4fff9', h: 173, s: 23, v: 100 },
+    ],
   },
 };
 
