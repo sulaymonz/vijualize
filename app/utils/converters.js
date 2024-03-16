@@ -1,4 +1,4 @@
-/* accepts parameter
+/* accepts parameters
  * hsv  Object = {h:x, s:y, v:z}
  */
 export const HSVtoRGB = (hsv) => {
@@ -42,7 +42,7 @@ export const HSVtoRGB = (hsv) => {
  * rgb  Object = {r:x, g:y, b:z}
  */
 export const RGBtoHSV = (rgb) => {
-  const { r, g, b } = rgb;
+  const [r, g, b] = rgb;
   var max = Math.max(r, g, b),
     min = Math.min(r, g, b),
     d = max - min,
