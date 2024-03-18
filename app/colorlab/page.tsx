@@ -1,7 +1,6 @@
 'use client';
 
 import { HEXtoRGB, RGBtoHSV } from '../utils/converters';
-import { getRandom, getGaussianRandomInt } from '../utils/paletteGenerators';
 
 export default function colorLab() {
   const paletteSet = [

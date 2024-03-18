@@ -14,9 +14,12 @@ export default function Landing() {
 
   const images = [
     {
+      src: '/images/vizu/0-color-normal-100.png',
+      layerType: 'dynamic_color',
+    },
+    {
       src: '/images/vizu/1-skin-normal-100.png',
       layerType: 'normal',
-      opacity: 1,
     },
     {
       src: '/images/vizu/2-color-normal-100.png',
@@ -93,7 +96,11 @@ export default function Landing() {
               <button
                 onClick={() => {
                   const newPalette = generateMonochromePalette(5).map(
-                    (hsv) => ({ hex: RGBtoHEX(HSVtoRGB(hsv)) }),
+                    // (hsv) => ({ hex: RGBtoHEX(HSVtoRGB(hsv)) }),
+                    (hsv) => {
+                      // console.log(hsv);
+                      return { hex: RGBtoHEX(HSVtoRGB(hsv)) };
+                    },
                   );
                   dispatch(landingActions.landingPaletteUpdated(newPalette));
                 }}

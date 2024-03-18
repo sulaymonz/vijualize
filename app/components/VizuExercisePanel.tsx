@@ -7,9 +7,12 @@ import VizuCanvas from './VizuCanvas';
 const description = 'This is a color palette visualization test.';
 const images = [
   {
+    src: '/images/vizu/0-color-normal-100.png',
+    layerType: 'dynamic_color',
+  },
+  {
     src: '/images/vizu/1-skin-normal-100.png',
     layerType: 'normal',
-    opacity: 1,
   },
   {
     src: '/images/vizu/2-color-normal-100.png',

@@ -40,17 +40,69 @@ export const getGaussianRandomInt = (min, max, skew = 1) => {
 
 export const generateMonochromePalette = (n) => {
   const palette = [];
+  let sRange, minS, maxS, vRange, minV, maxV;
   const h = getRandomInt(0, 359);
-  const minS = 10;
-  const maxS = 40;
-  const minV = 45;
-  const maxV = 95;
+  do {
+    // generating color ranges
+    sRange = getRandomInt(0, 100);
+    minS = getRandomInt(0, 100 - sRange);
+    maxS = minS + sRange;
+    vRange = getRandomInt(0, 100);
+    minV = getRandomInt(0, 100 - vRange);
+    maxV = minV + vRange;
+  } while (
+    // Ignore the picked ranges if the following
+    // conditions met and go regenerate.
+    // This is important, so we get a color range with
+    // sufficient contrast
+
+    // value (brightness) range shouldn't be too
+    // short if it's on the darker side
+    // (minV < 25 && vRange < (50 - (minV / 25) * 25)) ||
+    (minV < 25 && vRange < 50 - minV) ||
+    // and also the saturation and value ranges can't
+    // both be too short at the same time
+    (vRange < 15 && sRange < 50) ||
+    (sRange < 15 && vRange < 30)
+  );
+  // console.log({ sRange, vRange, minS, maxS, minV, maxV });
+  const reverseV = getRandomInt(0, 1);
   for (let i = 0; i < n; i++) {
     palette.push({
       h,
-      s: Math.floor(minS + i * ((maxS - minS) / (n - 1))),
-      v: Math.floor(maxV - i * ((maxV - minV) / (n - 1))),
+      s: Math.floor(minS + i * (sRange / (n - 1))),
+      v: Math.floor(
+        reverseV
+          ? maxV - i * (vRange / (n - 1))
+          : minV + i * (vRange / (n - 1)),
+      ),
     });
   }
   return palette;
 };
+
+// export const generateMonochromePalette = (n) => {
+//   const palette = [];
+//   let sRange, minS, maxS, vRange, minV, maxV;
+//   const h = getRandomInt(0, 359);
+//   vRange = 30;
+//   minV = getRandomInt(25, 100 - vRange);
+//   maxV = minV + vRange;
+//   sRange = 15;
+//   minS = getRandomInt(0, 100 - sRange);
+//   maxS = minS + sRange;
+//   // console.log({ sRange, vRange, minS, maxS, minV, maxV });
+//   const reverseV = getRandomInt(0, 1);
+//   for (let i = 0; i < n; i++) {
+//     palette.push({
+//       h,
+//       s: Math.floor(minS + i * (sRange / (n - 1))),
+//       v: Math.floor(
+//         reverseV
+//           ? maxV - i * (vRange / (n - 1))
+//           : minV + i * (vRange / (n - 1)),
+//       ),
+//     });
+//   }
+//   return palette;
+// };

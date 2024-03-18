@@ -1,4 +1,4 @@
-/* accepts parameters
+/* accepts parameter
  * hsv  Object = {h:x, s:y, v:z}
  */
 export const HSVtoRGB = (hsv) => {
