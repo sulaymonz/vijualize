@@ -1,9 +1,10 @@
 'use client';
 
-import { HEXtoRGB, RGBtoHSV } from '../utils/converters';
+import { HEXtoRGB, RGBtoHEX, RGBtoHSV, HSVtoRGB } from '../utils/converters';
+import { generateMonochromePalette } from '../utils/paletteGenerators';
 
 export default function colorLab() {
-  const paletteSet = [
+  const paletteSet1 = [
     ['e9f5db', 'cfe1b9', 'b5c99a', '97a97c', '87986a', '718355'],
     ['a1cca5', '8fb996', '709775', '415d43', '111d13'],
     ['ffe5ec', 'ffc2d1', 'ffb3c6', 'ff8fab', 'fb6f92'],
@@ -24,29 +25,40 @@ export default function colorLab() {
     ['f8f9fb', 'e1ecf7', 'aecbeb', '83b0e1', '71a5de'],
   ];
 
+  const paletteSet2 = [];
+  for (let i = 0; i < 50; i++) {
+    paletteSet2.push(
+      generateMonochromePalette(5).map((hsv) => ({
+        ...hsv,
+        hex: RGBtoHEX(HSVtoRGB(hsv)),
+      })),
+    );
+  }
+
   return (
     <div className="container mx-auto pb-20 w-[50vw]">
       <h1 className="my-5 text-3xl text-center">Color_Lab</h1>
       <div>
-        {paletteSet.map((palette) => (
+        {paletteSet2.map((palette) => (
           <div
-            key={`palette-${palette[0]}`}
+            key={`palette-${palette[0].hex}`}
             className="flex flex-row justify-evenly my-5"
           >
             {palette.map((color) => {
-              const hsv = RGBtoHSV(HEXtoRGB(`#${color}`));
+              // const hsv = RGBtoHSV(HEXtoRGB(`${color.hex}`));
               return (
                 <div
-                  key={color}
+                  key={color.hex}
                   className="w-full flex flex-col text-center text-xs font-mono"
                 >
                   <div
                     className="h-48 mb-1"
-                    style={{ backgroundColor: `#${color}` }}
+                    style={{ backgroundColor: `${color.hex}` }}
+                    suppressHydrationWarning
                   />
-                  <div>H:{hsv.h}</div>
-                  <div>S:{hsv.s}</div>
-                  <div>B:{hsv.v}</div>
+                  <div suppressHydrationWarning>H:{color.h}</div>
+                  <div suppressHydrationWarning>S:{color.s}</div>
+                  <div suppressHydrationWarning>B:{color.v}</div>
                 </div>
               );
             })}

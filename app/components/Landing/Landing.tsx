@@ -13,10 +13,10 @@ export default function Landing() {
   const dispatch = useDispatch();
 
   const images = [
-    {
-      src: '/images/vizu/0-color-normal-100.png',
-      layerType: 'dynamic_color',
-    },
+    // {
+    //   src: '/images/vizu/0-color-normal-100.png',
+    //   layerType: 'dynamic_color',
+    // },
     {
       src: '/images/vizu/1-skin-normal-100.png',
       layerType: 'normal',
@@ -110,8 +110,30 @@ export default function Landing() {
             </div>
           </div>
         </div>
-        <div className="w-1/2 flex justify-center items-center font-mono">
+        <div className="w-1/2 flex flex-col justify-center items-center font-mono">
           <VizuCanvas images={images} />
+          <div className="w-full flex flex-row justify-center items-center h-[5px]">
+            <div
+              className={`w-[100px] h-full`}
+              style={{ backgroundColor: `${palette[0].hex}` }}
+            />
+            <div
+              className={`w-[100px] h-full`}
+              style={{ backgroundColor: `${palette[1].hex}` }}
+            />
+            <div
+              className={`w-[100px] h-full`}
+              style={{ backgroundColor: `${palette[2].hex}` }}
+            />
+            <div
+              className={`w-[100px] h-full`}
+              style={{ backgroundColor: `${palette[3].hex}` }}
+            />
+            <div
+              className={`w-[100px] h-full`}
+              style={{ backgroundColor: `${palette[4].hex}` }}
+            />
+          </div>
         </div>
       </div>
     </section>
