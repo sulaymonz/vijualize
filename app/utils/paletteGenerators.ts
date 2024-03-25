@@ -89,11 +89,11 @@ export const generateTetradicPalette = (n = 5) => {
   if (fifthColorMethod === 0) {
     // dark color
     s5 = getRandomInt(0, 50);
-    v5 = getRandomInt(0, 25);
+    v5 = getRandomInt(20, 50);
   } else {
     // light color
-    s5 = getRandomInt(0, 10);
-    v5 = getRandomInt(90, 100);
+    s5 = getRandomInt(0, 5);
+    v5 = getRandomInt(95, 100);
   }
   palette.push({ h: h5, s: s5, v: v5 });
   return shuffleArray(palette);
