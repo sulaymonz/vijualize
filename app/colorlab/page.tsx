@@ -1,7 +1,10 @@
 'use client';
 
 import { HEXtoRGB, RGBtoHEX, RGBtoHSV, HSVtoRGB } from '../utils/converters';
-import { generateMonochromePalette } from '../utils/paletteGenerators';
+import {
+  generateMonochromePalette,
+  generateTetradicPalette,
+} from '../utils/paletteGenerators';
 
 export default function colorLab() {
   const paletteSet1 = [
@@ -28,7 +31,7 @@ export default function colorLab() {
   const paletteSet2 = [];
   for (let i = 0; i < 50; i++) {
     paletteSet2.push(
-      generateMonochromePalette(5).map((hsv) => ({
+      generateTetradicPalette(5).map((hsv) => ({
         ...hsv,
         hex: RGBtoHEX(HSVtoRGB(hsv)),
       })),

@@ -5,7 +5,10 @@ import * as landingActions from '../../../store/actions/landingActions';
 import RefreshIcon from '@mui/icons-material/Refresh';
 import Sidebar from './Sidebar';
 import VizuCanvas from '../VizuCanvas';
-import { generateMonochromePalette } from '@/app/utils/paletteGenerators';
+import {
+  generateMonochromePalette,
+  generateTetradicPalette,
+} from '@/app/utils/paletteGenerators';
 import { HSVtoRGB, RGBtoHEX } from '@/app/utils/converters';
 
 export default function Landing() {
@@ -95,7 +98,7 @@ export default function Landing() {
               <RefreshIcon fontSize="large" />
               <button
                 onClick={() => {
-                  const newPalette = generateMonochromePalette(5).map(
+                  const newPalette = generateTetradicPalette().map(
                     // (hsv) => ({ hex: RGBtoHEX(HSVtoRGB(hsv)) }),
                     (hsv) => {
                       // console.log(hsv);

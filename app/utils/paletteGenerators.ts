@@ -1,9 +1,9 @@
-import { getRandomInt } from './randomizers.ts';
+import { getRandomInt, shuffleArray } from './randomizers.ts';
 
-export const generateMonochromePalette = (n) => {
+export const generateMonochromePalette = (n = 5) => {
   const palette = [];
   let sRange, minS, maxS, vRange, minV, maxV;
-  const h = getRandomInt(0, 360);
+  const h = getRandomInt(0, 359);
   do {
     // generating color ranges
     sRange = getRandomInt(0, 100);
@@ -65,5 +65,36 @@ export const generateMonochromePalette = (n) => {
       return [palette[2], palette[4], palette[0], palette[1], palette[3]];
     default:
       return palette;
+    // these sorting methods are actually unaccaptable,
+    // should make work for n colors, not only 5
   }
+};
+
+export const generateTetradicPalette = (n = 5) => {
+  const h = getRandomInt(0, 359);
+  const hue = [h, (h + 90) % 360, (h + 180) % 360, (h + 270) % 360];
+  const s = getRandomInt(20, 90);
+  const v = getRandomInt(60, 100);
+  const palette = [
+    { h: hue[0], s, v },
+    { h: hue[1], s, v },
+    { h: hue[2], s, v },
+    { h: hue[3], s, v },
+  ];
+
+  // and a separate aproach for the fifth color
+  const h5 = hue[getRandomInt(0, 3)];
+  let s5, v5;
+  const fifthColorMethod = getRandomInt(0, 1);
+  if (fifthColorMethod === 0) {
+    // dark color
+    s5 = getRandomInt(0, 50);
+    v5 = getRandomInt(0, 25);
+  } else {
+    // light color
+    s5 = getRandomInt(0, 10);
+    v5 = getRandomInt(90, 100);
+  }
+  palette.push({ h: h5, s: s5, v: v5 });
+  return shuffleArray(palette);
 };
