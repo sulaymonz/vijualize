@@ -73,14 +73,18 @@ export const generateMonochromePalette = (n = 5) => {
 export const generateTetradicPalette = (n = 5) => {
   const h = getRandomInt(0, 359);
   const hue = [h, (h + 90) % 360, (h + 180) % 360, (h + 270) % 360];
-  const s = getRandomInt(20, 90);
+  const sameSaturation = getRandomInt(0, 2) !== 2;
+  const sameBrightness = getRandomInt(0, 2) !== 2;
+  const s = getRandomInt(30, 100);
   const v = getRandomInt(60, 100);
-  const palette = [
-    { h: hue[0], s, v },
-    { h: hue[1], s, v },
-    { h: hue[2], s, v },
-    { h: hue[3], s, v },
-  ];
+  const palette = [];
+  for (let i = 0; i < 4; i++) {
+    palette.push({
+      h: hue[i],
+      s: sameSaturation ? s : getRandomInt(20, 100),
+      v: sameBrightness ? v : getRandomInt(60, 100),
+    });
+  }
 
   // and a separate aproach for the fifth color
   const h5 = hue[getRandomInt(0, 3)];
@@ -96,5 +100,38 @@ export const generateTetradicPalette = (n = 5) => {
     v5 = getRandomInt(95, 100);
   }
   palette.push({ h: h5, s: s5, v: v5 });
-  return shuffleArray(palette);
+  return getRandomInt(0, 2) ? shuffleArray(palette) : palette;
+};
+
+export const generateAnalogusPalette = () => {
+  const h1 = getRandomInt(0, 359);
+  const h2 = (h1 + 360 - 30) % 360;
+  const h3 = (h2 + 360 + 30) % 360;
+  const hue = [h2, h2, h1, h1, h3, h3];
+  hue.splice(getRandomInt(0, 5), 1);
+  const palette = [];
+  for (let i = 0; i < 4; i++) {
+    palette.push({
+      h: hue[i],
+      s: getRandomInt(20, 100),
+      v: getRandomInt(60, 100),
+    });
+  }
+
+  // and a separate aproach for the fifth color
+  let s5, v5;
+  const fifthColorMethod = getRandomInt(0, 1);
+  if (fifthColorMethod === 0) {
+    // dark color
+    s5 = getRandomInt(0, 50);
+    v5 = getRandomInt(20, 50);
+  } else {
+    // light color
+    s5 = getRandomInt(0, 5);
+    v5 = getRandomInt(95, 100);
+  }
+  palette.push({ h: hue[4], s: s5, v: v5 });
+  // use this on your main designs
+  return getRandomInt(0, 2) ? shuffleArray(palette) : palette;
+  // return shuffleArray(palette);
 };

@@ -3,8 +3,10 @@
 import { HEXtoRGB, RGBtoHEX, RGBtoHSV, HSVtoRGB } from '../utils/converters';
 import {
   generateMonochromePalette,
+  generateAnalogusPalette,
   generateTetradicPalette,
 } from '../utils/paletteGenerators';
+import { getRandomInt } from '../utils/randomizers';
 
 export default function colorLab() {
   const paletteSet1 = [
@@ -30,12 +32,35 @@ export default function colorLab() {
 
   const paletteSet2 = [];
   for (let i = 0; i < 50; i++) {
-    paletteSet2.push(
-      generateTetradicPalette(5).map((hsv) => ({
-        ...hsv,
-        hex: RGBtoHEX(HSVtoRGB(hsv)),
-      })),
-    );
+    let newPalette;
+    const colorScheme = getRandomInt(0, 2);
+    switch (colorScheme) {
+      case 0:
+        newPalette = generateMonochromePalette().map((hsv) => ({
+          ...hsv,
+          hex: RGBtoHEX(HSVtoRGB(hsv)),
+        }));
+        break;
+      case 1:
+        newPalette = generateAnalogusPalette().map((hsv) => ({
+          ...hsv,
+          hex: RGBtoHEX(HSVtoRGB(hsv)),
+        }));
+        break;
+      case 2:
+        newPalette = generateTetradicPalette().map((hsv) => ({
+          ...hsv,
+          hex: RGBtoHEX(HSVtoRGB(hsv)),
+        }));
+        break;
+    }
+    paletteSet2.push(newPalette);
+    // paletteSet2.push(
+    //   generateAnalogusPalette().map((hsv) => ({
+    //     ...hsv,
+    //     hex: RGBtoHEX(HSVtoRGB(hsv)),
+    //   })),
+    // );
   }
 
   return (

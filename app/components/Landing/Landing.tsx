@@ -7,9 +7,11 @@ import Sidebar from './Sidebar';
 import VizuCanvas from '../VizuCanvas';
 import {
   generateMonochromePalette,
+  generateAnalogusPalette,
   generateTetradicPalette,
 } from '@/app/utils/paletteGenerators';
 import { HSVtoRGB, RGBtoHEX } from '@/app/utils/converters';
+import { getRandomInt } from '@/app/utils/randomizers';
 
 export default function Landing() {
   const { palette } = useSelector((state) => state.landing);
@@ -98,13 +100,25 @@ export default function Landing() {
               <RefreshIcon fontSize="large" />
               <button
                 onClick={() => {
-                  const newPalette = generateTetradicPalette().map(
-                    // (hsv) => ({ hex: RGBtoHEX(HSVtoRGB(hsv)) }),
-                    (hsv) => {
-                      // console.log(hsv);
-                      return { hex: RGBtoHEX(HSVtoRGB(hsv)) };
-                    },
-                  );
+                  let newPalette;
+                  const colorScheme = getRandomInt(0, 2);
+                  switch (colorScheme) {
+                    case 0:
+                      newPalette = generateMonochromePalette().map((hsv) => ({
+                        hex: RGBtoHEX(HSVtoRGB(hsv)),
+                      }));
+                      break;
+                    case 1:
+                      newPalette = generateAnalogusPalette().map((hsv) => ({
+                        hex: RGBtoHEX(HSVtoRGB(hsv)),
+                      }));
+                      break;
+                    case 2:
+                      newPalette = generateTetradicPalette().map((hsv) => ({
+                        hex: RGBtoHEX(HSVtoRGB(hsv)),
+                      }));
+                      break;
+                  }
                   dispatch(landingActions.landingPaletteUpdated(newPalette));
                 }}
               >
