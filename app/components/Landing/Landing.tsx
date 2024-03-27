@@ -7,8 +7,8 @@ import Sidebar from './Sidebar';
 import VizuCanvas from '../VizuCanvas';
 import {
   generateMonochromePalette,
-  generateAnalogusPalette,
-  generateTetradicPalette,
+  generateAnalogousPalette,
+  generateSquarePalette,
 } from '@/app/utils/paletteGenerators';
 import { HSVtoRGB, RGBtoHEX } from '@/app/utils/converters';
 import { getRandomInt } from '@/app/utils/randomizers';
@@ -109,12 +109,12 @@ export default function Landing() {
                       }));
                       break;
                     case 1:
-                      newPalette = generateAnalogusPalette().map((hsv) => ({
+                      newPalette = generateAnalogousPalette().map((hsv) => ({
                         hex: RGBtoHEX(HSVtoRGB(hsv)),
                       }));
                       break;
                     case 2:
-                      newPalette = generateTetradicPalette().map((hsv) => ({
+                      newPalette = generateSquarePalette().map((hsv) => ({
                         hex: RGBtoHEX(HSVtoRGB(hsv)),
                       }));
                       break;

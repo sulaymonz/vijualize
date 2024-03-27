@@ -70,7 +70,7 @@ export const generateMonochromePalette = (n = 5) => {
   }
 };
 
-export const generateTetradicPalette = (n = 5) => {
+export const generateSquarePalette = (n = 5) => {
   const h = getRandomInt(0, 359);
   const hue = [h, (h + 90) % 360, (h + 180) % 360, (h + 270) % 360];
   const sameSaturation = getRandomInt(0, 2) !== 2;
@@ -103,7 +103,7 @@ export const generateTetradicPalette = (n = 5) => {
   return getRandomInt(0, 2) ? shuffleArray(palette) : palette;
 };
 
-export const generateAnalogusPalette = () => {
+export const generateAnalogousPalette = () => {
   const h1 = getRandomInt(0, 359);
   const h2 = (h1 + 360 - 30) % 360;
   const h3 = (h2 + 360 + 30) % 360;

@@ -3,8 +3,8 @@
 import { HEXtoRGB, RGBtoHEX, RGBtoHSV, HSVtoRGB } from '../utils/converters';
 import {
   generateMonochromePalette,
-  generateAnalogusPalette,
-  generateTetradicPalette,
+  generateAnalogousPalette,
+  generateSquarePalette,
 } from '../utils/paletteGenerators';
 import { getRandomInt } from '../utils/randomizers';
 
@@ -42,13 +42,13 @@ export default function colorLab() {
         }));
         break;
       case 1:
-        newPalette = generateAnalogusPalette().map((hsv) => ({
+        newPalette = generateAnalogousPalette().map((hsv) => ({
           ...hsv,
           hex: RGBtoHEX(HSVtoRGB(hsv)),
         }));
         break;
       case 2:
-        newPalette = generateTetradicPalette().map((hsv) => ({
+        newPalette = generateSquarePalette().map((hsv) => ({
           ...hsv,
           hex: RGBtoHEX(HSVtoRGB(hsv)),
         }));
