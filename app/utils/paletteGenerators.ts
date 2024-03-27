@@ -6,10 +6,11 @@ export const generateMonochromePalette = (n = 5) => {
   const h = getRandomInt(0, 359);
   do {
     // generating color ranges
+    console.log('attempt');
     sRange = getRandomInt(0, 100);
     minS = getRandomInt(0, 100 - sRange);
     maxS = minS + sRange;
-    vRange = getRandomInt(30, 100);
+    vRange = getRandomInt(40, 100);
     minV = getRandomInt(0, 100 - vRange);
     maxV = minV + vRange;
   } while (
@@ -20,9 +21,9 @@ export const generateMonochromePalette = (n = 5) => {
 
     // value (brightness) range shouldn't be too
     // short if it's on the darker side
-    // (minV < 25 && vRange < (50 - (minV / 25) * 25)) ||
-    minV < 25 &&
-    vRange < 50 - minV // ||
+    minV < 40 &&
+    vRange < 70 - (minV / 40) * 20 // ||
+    // (minV < 25 && vRange < 50 - minV) ||
     // and also the saturation and value ranges can't
     // both be too short at the same time
     // (vRange < 15 && sRange < 50) ||
