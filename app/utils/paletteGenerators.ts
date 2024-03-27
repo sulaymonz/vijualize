@@ -70,9 +70,18 @@ export const generateMonochromePalette = (n = 5) => {
   }
 };
 
-export const generateSquarePalette = (n = 5) => {
+const squareHues = () => {
   const h = getRandomInt(0, 359);
-  const hue = [h, (h + 90) % 360, (h + 180) % 360, (h + 270) % 360];
+  return [h, (h + 90) % 360, (h + 180) % 360, (h + 270) % 360];
+};
+
+const tetradicHues = () => {
+  const h = getRandomInt(0, 359);
+  return [h, (h + 60) % 360, (h + 180) % 360, (h + 240) % 360];
+};
+
+export const generateSquarePalette = (n = 5, hueGenerator = squareHues) => {
+  const hue = hueGenerator();
   const sameSaturation = getRandomInt(0, 2) !== 2;
   const sameBrightness = getRandomInt(0, 2) !== 2;
   const s = getRandomInt(30, 100);
@@ -103,11 +112,33 @@ export const generateSquarePalette = (n = 5) => {
   return getRandomInt(0, 2) ? shuffleArray(palette) : palette;
 };
 
-export const generateAnalogousPalette = () => {
+export const generateTetradicPalette = (n = 5) => {
+  return generateSquarePalette(n, tetradicHues);
+};
+
+const analogousHues = () => {
   const h1 = getRandomInt(0, 359);
   const h2 = (h1 + 360 - 30) % 360;
   const h3 = (h2 + 360 + 30) % 360;
-  const hue = [h2, h2, h1, h1, h3, h3];
+  return [h2, h2, h1, h1, h3, h3];
+};
+
+const splitComplementaryHues = () => {
+  const h1 = getRandomInt(0, 359);
+  const h2 = (h1 + 180 - 30) % 360;
+  const h3 = (h2 + 180 + 30) % 360;
+  return [h2, h2, h1, h1, h3, h3];
+};
+
+const triadicHues = () => {
+  const h1 = getRandomInt(0, 359);
+  const h2 = (h1 + 120) % 360;
+  const h3 = (h2 + 240) % 360;
+  return [h2, h2, h1, h1, h3, h3];
+};
+
+export const generateAnalogousPalette = (hueGenerator = analogousHues) => {
+  const hue = hueGenerator();
   hue.splice(getRandomInt(0, 5), 1);
   const palette = [];
   for (let i = 0; i < 4; i++) {
@@ -134,4 +165,12 @@ export const generateAnalogousPalette = () => {
   // use this on your main designs
   return getRandomInt(0, 2) ? shuffleArray(palette) : palette;
   // return shuffleArray(palette);
+};
+
+export const generateSplitComplementaryPalette = () => {
+  return generateAnalogousPalette(splitComplementaryHues);
+};
+
+export const generateTriadicPalette = () => {
+  return generateAnalogousPalette(triadicHues);
 };

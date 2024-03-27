@@ -9,6 +9,9 @@ import {
   generateMonochromePalette,
   generateAnalogousPalette,
   generateSquarePalette,
+  generateTetradicPalette,
+  generateSplitComplementaryPalette,
+  generateTriadicPalette,
 } from '@/app/utils/paletteGenerators';
 import { HSVtoRGB, RGBtoHEX } from '@/app/utils/converters';
 import { getRandomInt } from '@/app/utils/randomizers';
@@ -101,7 +104,7 @@ export default function Landing() {
               <button
                 onClick={() => {
                   let newPalette;
-                  const colorScheme = getRandomInt(0, 2);
+                  const colorScheme = getRandomInt(0, 5);
                   switch (colorScheme) {
                     case 0:
                       newPalette = generateMonochromePalette().map((hsv) => ({
@@ -114,11 +117,35 @@ export default function Landing() {
                       }));
                       break;
                     case 2:
+                      newPalette = generateTetradicPalette().map((hsv) => ({
+                        hex: RGBtoHEX(HSVtoRGB(hsv)),
+                      }));
+                      break;
+                    case 3:
                       newPalette = generateSquarePalette().map((hsv) => ({
                         hex: RGBtoHEX(HSVtoRGB(hsv)),
                       }));
                       break;
+                    case 4:
+                      newPalette = generateSplitComplementaryPalette().map(
+                        (hsv) => ({
+                          hex: RGBtoHEX(HSVtoRGB(hsv)),
+                        }),
+                      );
+                      break;
+                    case 5:
+                      newPalette = generateTriadicPalette().map((hsv) => ({
+                        hex: RGBtoHEX(HSVtoRGB(hsv)),
+                      }));
+                      break;
+                    default:
+                      break;
                   }
+
+                  // const newPalette = generateTriadicPalette().map((hsv) => ({
+                  //   hex: RGBtoHEX(HSVtoRGB(hsv)),
+                  // }));
+
                   dispatch(landingActions.landingPaletteUpdated(newPalette));
                 }}
               >

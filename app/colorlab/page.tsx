@@ -5,6 +5,9 @@ import {
   generateMonochromePalette,
   generateAnalogousPalette,
   generateSquarePalette,
+  generateTetradicPalette,
+  generateSplitComplementaryPalette,
+  generateTriadicPalette,
 } from '../utils/paletteGenerators';
 import { getRandomInt } from '../utils/randomizers';
 
@@ -33,7 +36,7 @@ export default function colorLab() {
   const paletteSet2 = [];
   for (let i = 0; i < 50; i++) {
     let newPalette;
-    const colorScheme = getRandomInt(0, 2);
+    const colorScheme = getRandomInt(0, 5);
     switch (colorScheme) {
       case 0:
         newPalette = generateMonochromePalette().map((hsv) => ({
@@ -48,15 +51,36 @@ export default function colorLab() {
         }));
         break;
       case 2:
+        newPalette = generateTetradicPalette().map((hsv) => ({
+          ...hsv,
+          hex: RGBtoHEX(HSVtoRGB(hsv)),
+        }));
+        break;
+      case 3:
         newPalette = generateSquarePalette().map((hsv) => ({
           ...hsv,
           hex: RGBtoHEX(HSVtoRGB(hsv)),
         }));
         break;
+      case 4:
+        newPalette = generateSplitComplementaryPalette().map((hsv) => ({
+          ...hsv,
+          hex: RGBtoHEX(HSVtoRGB(hsv)),
+        }));
+        break;
+      case 5:
+        newPalette = generateTriadicPalette().map((hsv) => ({
+          ...hsv,
+          hex: RGBtoHEX(HSVtoRGB(hsv)),
+        }));
+        break;
+      default:
+        break;
     }
     paletteSet2.push(newPalette);
+
     // paletteSet2.push(
-    //   generateAnalogusPalette().map((hsv) => ({
+    //   generateTriadicPalette().map((hsv) => ({
     //     ...hsv,
     //     hex: RGBtoHEX(HSVtoRGB(hsv)),
     //   })),
