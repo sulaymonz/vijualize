@@ -6,7 +6,6 @@ export const generateMonochromePalette = (n = 5) => {
   const h = getRandomInt(0, 359);
   do {
     // generating color ranges
-    console.log('attempt');
     sRange = getRandomInt(0, 100);
     minS = getRandomInt(0, 100 - sRange);
     maxS = minS + sRange;
@@ -84,8 +83,10 @@ const tetradicHues = () => {
 
 export const generateSquarePalette = (n = 5, hueGenerator = squareHues) => {
   const hue = hueGenerator();
-  const sameSaturation = getRandomInt(0, 2) !== 2;
-  const sameBrightness = getRandomInt(0, 2) !== 2;
+  // const sameSaturation = getRandomInt(0, 2) !== 2;
+  // const sameBrightness = getRandomInt(0, 2) !== 2;
+  const sameSaturation = true;
+  const sameBrightness = true;
   const s = getRandomInt(30, 100);
   const v = getRandomInt(60, 100);
   const palette = [];

@@ -80,7 +80,7 @@ export default function colorLab() {
     paletteSet2.push(newPalette);
 
     // paletteSet2.push(
-    //   generateTriadicPalette().map((hsv) => ({
+    //   generateSplitComplementaryPalette().map((hsv) => ({
     //     ...hsv,
     //     hex: RGBtoHEX(HSVtoRGB(hsv)),
     //   })),
@@ -88,32 +88,78 @@ export default function colorLab() {
   }
 
   return (
-    <div className="container mx-auto pb-20 w-[50vw]">
+    <div className="container mx-auto pb-20 w-[50vw] bg-[#f9f9f9]">
       <h1 className="my-5 text-3xl text-center">Color_Lab</h1>
-      <div>
+      <div className="flex flex-col gap-5">
         {paletteSet2.map((palette) => (
           <div
             key={`palette-${palette[0].hex}`}
-            className="flex flex-row justify-evenly my-5"
+            className="flex flex-col w-full h-52 rounded-2xl shadow overflow-hidden"
           >
-            {palette.map((color) => {
-              // const hsv = RGBtoHSV(HEXtoRGB(`${color.hex}`));
-              return (
-                <div
-                  key={color.hex}
-                  className="w-full flex flex-col text-center text-xs font-mono"
-                >
-                  <div
-                    className="h-48 mb-1"
-                    style={{ backgroundColor: `${color.hex}` }}
-                    suppressHydrationWarning
-                  />
-                  <div suppressHydrationWarning>H:{color.h}</div>
-                  <div suppressHydrationWarning>S:{color.s}</div>
-                  <div suppressHydrationWarning>B:{color.v}</div>
-                </div>
-              );
-            })}
+            <div className="w-full h-1/4 flex flex-row justify-center bg-white font-mono text-[0.65rem]">
+              <div
+                suppressHydrationWarning
+                className="w-1/5 h-full flex items-center justify-center text-center"
+              >
+                {palette[0].hex}
+                <br />
+                H:{palette[0].h} S:{palette[0].s} B:{palette[0].v}
+              </div>
+              <div
+                suppressHydrationWarning
+                className="w-1/5 h-full flex items-center justify-center text-center"
+              >
+                {palette[1].hex}
+                <br />
+                H:{palette[1].h} S:{palette[1].s} B:{palette[1].v}
+              </div>
+              <div
+                suppressHydrationWarning
+                className="w-1/5 h-full flex items-center justify-center text-center"
+              >
+                {palette[2].hex}
+                <br />
+                H:{palette[2].h} S:{palette[2].s} B:{palette[2].v}
+              </div>
+              <div
+                suppressHydrationWarning
+                className="w-1/5 h-full flex items-center justify-center text-center"
+              >
+                {palette[3].hex}
+                <br />
+                H:{palette[3].h} S:{palette[3].s} B:{palette[3].v}
+              </div>
+              <div
+                suppressHydrationWarning
+                className="w-1/5 h-full flex items-center justify-center text-center"
+              >
+                {palette[4].hex}
+                <br />
+                H:{palette[4].h} S:{palette[4].s} B:{palette[4].v}
+              </div>
+            </div>
+            <div className="w-full h-3/4 flex flex-row justify-center">
+              <div
+                className="w-1/5 h-full"
+                style={{ backgroundColor: palette[0].hex }}
+              />
+              <div
+                className="w-1/5 h-full"
+                style={{ backgroundColor: palette[1].hex }}
+              />
+              <div
+                className="w-1/5 h-full"
+                style={{ backgroundColor: palette[2].hex }}
+              />
+              <div
+                className="w-1/5 h-full"
+                style={{ backgroundColor: palette[3].hex }}
+              />
+              <div
+                className="w-1/5 h-full"
+                style={{ backgroundColor: palette[4].hex }}
+              />
+            </div>
           </div>
         ))}
       </div>

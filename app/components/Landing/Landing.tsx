@@ -61,11 +61,11 @@ export default function Landing() {
 
   return (
     <section className="flex border-[1px] rounded-lg min-h-[calc(100vh-164px)] lg:min-h-[calc(100vh-190px)] overflow-hidden">
-      <div className="flex-none w-[130px]">
+      <div className="flex-none w-[130px] bg-[#f9f9f9]">
         <Sidebar />
       </div>
       <div className="grow flex flex-row">
-        <div className="w-1/2 flex flex-col justify-center gap-8 items-center">
+        <div className="w-1/2 flex flex-col justify-center gap-8 items-center bg-[#f9f9f9]">
           <div className="flex flex-col justify-start">
             <h1 className="text-4xl font-mono font-bold my-2">Color palette</h1>
             <h3 className="text-lg font-light">
@@ -77,27 +77,46 @@ export default function Landing() {
             </h3>
           </div>
           <div>
-            <div className="w-80 h-32 flex flex-row justify-center gap-2">
-              <div
-                className="w-1/5 h-full rounded-full shadow-lg"
-                style={{ backgroundColor: palette[0].hex }}
-              />
-              <div
-                className="w-1/5 h-full rounded-full shadow-lg"
-                style={{ backgroundColor: palette[1].hex }}
-              />
-              <div
-                className="w-1/5 h-full rounded-full shadow-lg"
-                style={{ backgroundColor: palette[2].hex }}
-              />
-              <div
-                className="w-1/5 h-full rounded-full shadow-lg"
-                style={{ backgroundColor: palette[3].hex }}
-              />
-              <div
-                className="w-1/5 h-full rounded-full shadow-lg"
-                style={{ backgroundColor: palette[4].hex }}
-              />
+            <div className="flex flex-col w-80 h-40 rounded-3xl shadow-md overflow-hidden">
+              <div className="w-full h-1/4 flex flex-row justify-center bg-white font-mono text-[0.65rem]">
+                <div className="w-1/5 h-full flex items-center justify-center">
+                  {palette[0].hex}
+                </div>
+                <div className="w-1/5 h-full flex items-center justify-center">
+                  {palette[1].hex}
+                </div>
+                <div className="w-1/5 h-full flex items-center justify-center">
+                  {palette[2].hex}
+                </div>
+                <div className="w-1/5 h-full flex items-center justify-center">
+                  {palette[3].hex}
+                </div>
+                <div className="w-1/5 h-full flex items-center justify-center">
+                  {palette[4].hex}
+                </div>
+              </div>
+              <div className="w-full h-3/4 flex flex-row justify-center">
+                <div
+                  className="w-1/5 h-full"
+                  style={{ backgroundColor: palette[0].hex }}
+                />
+                <div
+                  className="w-1/5 h-full"
+                  style={{ backgroundColor: palette[1].hex }}
+                />
+                <div
+                  className="w-1/5 h-full"
+                  style={{ backgroundColor: palette[2].hex }}
+                />
+                <div
+                  className="w-1/5 h-full"
+                  style={{ backgroundColor: palette[3].hex }}
+                />
+                <div
+                  className="w-1/5 h-full"
+                  style={{ backgroundColor: palette[4].hex }}
+                />
+              </div>
             </div>
             <div className="flex flex-row justify-center my-8 text-lg font-mono cursor-pointer">
               <RefreshIcon fontSize="large" />
@@ -142,9 +161,11 @@ export default function Landing() {
                       break;
                   }
 
-                  // const newPalette = generateTriadicPalette().map((hsv) => ({
-                  //   hex: RGBtoHEX(HSVtoRGB(hsv)),
-                  // }));
+                  // const newPalette = generateSplitComplementaryPalette().map(
+                  //   (hsv) => ({
+                  //     hex: RGBtoHEX(HSVtoRGB(hsv)),
+                  //   }),
+                  // );
 
                   dispatch(landingActions.landingPaletteUpdated(newPalette));
                 }}
@@ -156,28 +177,6 @@ export default function Landing() {
         </div>
         <div className="w-1/2 flex flex-col justify-center items-center font-mono">
           <VizuCanvas images={images} />
-          <div className="w-full flex flex-row justify-center items-center h-[5px]">
-            <div
-              className={`w-[100px] h-full`}
-              style={{ backgroundColor: `${palette[0].hex}` }}
-            />
-            <div
-              className={`w-[100px] h-full`}
-              style={{ backgroundColor: `${palette[1].hex}` }}
-            />
-            <div
-              className={`w-[100px] h-full`}
-              style={{ backgroundColor: `${palette[2].hex}` }}
-            />
-            <div
-              className={`w-[100px] h-full`}
-              style={{ backgroundColor: `${palette[3].hex}` }}
-            />
-            <div
-              className={`w-[100px] h-full`}
-              style={{ backgroundColor: `${palette[4].hex}` }}
-            />
-          </div>
         </div>
       </div>
     </section>
