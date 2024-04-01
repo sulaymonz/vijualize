@@ -60,7 +60,7 @@ export default function Landing() {
   ];
 
   return (
-    <section className="flex border-[1px] rounded-lg min-h-[calc(100vh-164px)] lg:min-h-[calc(100vh-190px)] overflow-hidden">
+    <section className="flex rounded-3xl shadow-md min-h-[calc(100vh-164px)] lg:min-h-[calc(100vh-190px)] overflow-hidden">
       <div className="flex-none w-[130px] bg-[#f9f9f9]">
         <Sidebar />
       </div>
@@ -77,7 +77,7 @@ export default function Landing() {
             </h3>
           </div>
           <div>
-            <div className="flex flex-col w-80 h-40 rounded-3xl shadow-md overflow-hidden">
+            <div className="flex flex-col w-80 h-48 rounded-3xl shadow-md overflow-hidden">
               <div className="w-full h-1/4 flex flex-row justify-center bg-white font-mono text-[0.65rem]">
                 <div className="w-1/5 h-full flex items-center justify-center">
                   {palette[0].hex}

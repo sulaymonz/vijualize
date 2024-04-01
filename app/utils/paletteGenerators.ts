@@ -101,7 +101,7 @@ export const generateSquarePalette = (n = 5, hueGenerator = squareHues) => {
   // and a separate aproach for the fifth color
   const h5 = hue[getRandomInt(0, 3)];
   let s5, v5;
-  const fifthColorMethod = getRandomInt(0, 1);
+  const fifthColorMethod = getRandomInt(0, 2);
   if (fifthColorMethod === 0) {
     // dark color
     s5 = getRandomInt(0, 50);
@@ -154,7 +154,7 @@ export const generateAnalogousPalette = (hueGenerator = analogousHues) => {
 
   // and a separate aproach for the fifth color
   let s5, v5;
-  const fifthColorMethod = getRandomInt(0, 1);
+  const fifthColorMethod = getRandomInt(0, 2);
   if (fifthColorMethod === 0) {
     // dark color
     s5 = getRandomInt(0, 50);
