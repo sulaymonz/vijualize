@@ -18,32 +18,32 @@ import {
   generateTriadicPalette,
 } from '@/app/utils/paletteGenerators';
 import { HSVtoRGB, RGBtoHEX } from '@/app/utils/converters';
-import { getRandomInt } from '@/app/utils/randomizers';
+import { getRandomInt, shuffleArray } from '@/app/utils/randomizers';
+
+const slides = shuffleArray([
+  { src: 'posters/Untitled_Artwork-1.png' },
+  { src: 'posters/Untitled_Artwork-2.png' },
+  { src: 'posters/Untitled_Artwork-3.png' },
+  { src: 'posters/Untitled_Artwork-4.png' },
+  { src: 'posters/Untitled_Artwork-5.png' },
+  { src: 'posters/Untitled_Artwork-6.png' },
+  { src: 'posters/Untitled_Artwork-7.png' },
+  { src: 'posters/Untitled_Artwork-8.png' },
+  { src: 'posters/Untitled_Artwork-9.png' },
+  { src: 'posters/Untitled_Artwork-10.png' },
+  { src: 'posters/Untitled_Artwork-11.png' },
+  { src: 'posters/Untitled_Artwork-12.png' },
+  { src: 'posters/Untitled_Artwork-13.png' },
+  { src: 'posters/Untitled_Artwork-14.png' },
+  { src: 'posters/Untitled_Artwork-15.png' },
+  { src: 'posters/Untitled_Artwork-16.png' },
+  { src: 'posters/Untitled_Artwork-17.png' },
+]);
 
 export default function Landing() {
   const { palette } = useSelector((state) => state.landing);
   const dispatch = useDispatch();
   const [curSlide, setCurSlide] = useState(0);
-
-  const slides = [
-    { src: 'posters/Untitled_Artwork-1.png' },
-    { src: 'posters/Untitled_Artwork-2.png' },
-    { src: 'posters/Untitled_Artwork-3.png' },
-    { src: 'posters/Untitled_Artwork-4.png' },
-    { src: 'posters/Untitled_Artwork-5.png' },
-    { src: 'posters/Untitled_Artwork-6.png' },
-    { src: 'posters/Untitled_Artwork-7.png' },
-    { src: 'posters/Untitled_Artwork-8.png' },
-    { src: 'posters/Untitled_Artwork-9.png' },
-    { src: 'posters/Untitled_Artwork-10.png' },
-    { src: 'posters/Untitled_Artwork-11.png' },
-    { src: 'posters/Untitled_Artwork-12.png' },
-    { src: 'posters/Untitled_Artwork-13.png' },
-    { src: 'posters/Untitled_Artwork-14.png' },
-    { src: 'posters/Untitled_Artwork-15.png' },
-    { src: 'posters/Untitled_Artwork-16.png' },
-    { src: 'posters/Untitled_Artwork-17.png' },
-  ];
 
   const nextSlide = () => {
     setCurSlide(curSlide < slides.length - 1 ? curSlide + 1 : curSlide);
@@ -208,17 +208,20 @@ export default function Landing() {
             </div>
           </div>
         </div>
-        <div className="w-1/2 flex justify-center items-center font-mono">
-          {/* <VizuCanvas images={images} /> */}
-          <button className="cursor-pointer" onClick={prevSlide}>
-            <KeyboardArrowLeftIcon fontSize="large" />
-          </button>
-          <div className="w-[500px] h-[600px] overflow-hidden relative">
-            <Carousel slides={slides} current={curSlide} />
+        <div className="w-1/2 flex flex-col justify-center items-center gap-8">
+          <div className="w-full flex justify-center items-center">
+            <div className="w-[500px] h-[600px] overflow-hidden relative">
+              <Carousel slides={slides} current={curSlide} />
+            </div>
           </div>
-          <button className="cursor-pointer" onClick={nextSlide}>
-            <KeyboardArrowRightIcon fontSize="large" />
-          </button>
+          <div className="w-full flex justify-center items-center">
+            <button className="cursor-pointer" onClick={prevSlide}>
+              <KeyboardArrowLeftIcon fontSize="large" />
+            </button>
+            <button className="cursor-pointer" onClick={nextSlide}>
+              <KeyboardArrowRightIcon fontSize="large" />
+            </button>
+          </div>
         </div>
       </div>
     </section>
