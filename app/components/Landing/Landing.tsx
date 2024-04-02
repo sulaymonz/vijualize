@@ -1,10 +1,14 @@
 'use client';
 
+import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import * as landingActions from '../../../store/actions/landingActions';
 import RefreshIcon from '@mui/icons-material/Refresh';
 import Sidebar from './Sidebar';
-import VizuCanvas from '../VizuCanvas';
+// import VizuCanvas from '../VizuCanvas';
+import Carousel from '../Carousel';
+import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft';
+import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 import {
   generateMonochromePalette,
   generateAnalogousPalette,
@@ -19,45 +23,74 @@ import { getRandomInt } from '@/app/utils/randomizers';
 export default function Landing() {
   const { palette } = useSelector((state) => state.landing);
   const dispatch = useDispatch();
+  const [curSlide, setCurSlide] = useState(0);
 
-  const images = [
-    // {
-    //   src: '/images/vizu/0-color-normal-100.png',
-    //   layerType: 'dynamic_color',
-    // },
-    {
-      src: '/images/vizu/1-skin-normal-100.png',
-      layerType: 'normal',
-    },
-    {
-      src: '/images/vizu/2-color-normal-100.png',
-      layerType: 'dynamic_color',
-    },
-    {
-      src: '/images/vizu/3-color-normal-100.png',
-      layerType: 'dynamic_color',
-    },
-    {
-      src: '/images/vizu/4-color-normal-100.png',
-      layerType: 'dynamic_color',
-    },
-    {
-      src: '/images/vizu/5-color-normal-100.png',
-      layerType: 'dynamic_color',
-    },
-    {
-      src: '/images/vizu/6-shadow-multiply-30.png',
-      layerType: 'multiply',
-    },
-    {
-      src: '/images/vizu/7-light-screen-60.png',
-      layerType: 'screen',
-    },
-    {
-      src: '/images/vizu/last-outline.png',
-      layerType: 'normal',
-    },
+  const slides = [
+    { src: 'posters/Untitled_Artwork-1.png' },
+    { src: 'posters/Untitled_Artwork-2.png' },
+    { src: 'posters/Untitled_Artwork-3.png' },
+    { src: 'posters/Untitled_Artwork-4.png' },
+    { src: 'posters/Untitled_Artwork-5.png' },
+    { src: 'posters/Untitled_Artwork-6.png' },
+    { src: 'posters/Untitled_Artwork-7.png' },
+    { src: 'posters/Untitled_Artwork-8.png' },
+    { src: 'posters/Untitled_Artwork-9.png' },
+    { src: 'posters/Untitled_Artwork-10.png' },
+    { src: 'posters/Untitled_Artwork-11.png' },
+    { src: 'posters/Untitled_Artwork-12.png' },
+    { src: 'posters/Untitled_Artwork-13.png' },
+    { src: 'posters/Untitled_Artwork-14.png' },
+    { src: 'posters/Untitled_Artwork-15.png' },
+    { src: 'posters/Untitled_Artwork-16.png' },
+    { src: 'posters/Untitled_Artwork-17.png' },
   ];
+
+  const nextSlide = () => {
+    setCurSlide(curSlide < slides.length - 1 ? curSlide + 1 : curSlide);
+  };
+
+  const prevSlide = () => {
+    setCurSlide(curSlide > 0 ? curSlide - 1 : curSlide);
+  };
+
+  // const images = [
+  //   // {
+  //   //   src: '/images/vizu/0-color-normal-100.png',
+  //   //   layerType: 'dynamic_color',
+  //   // },
+  //   {
+  //     src: '/images/vizu/1-skin-normal-100.png',
+  //     layerType: 'normal',
+  //   },
+  //   {
+  //     src: '/images/vizu/2-color-normal-100.png',
+  //     layerType: 'dynamic_color',
+  //   },
+  //   {
+  //     src: '/images/vizu/3-color-normal-100.png',
+  //     layerType: 'dynamic_color',
+  //   },
+  //   {
+  //     src: '/images/vizu/4-color-normal-100.png',
+  //     layerType: 'dynamic_color',
+  //   },
+  //   {
+  //     src: '/images/vizu/5-color-normal-100.png',
+  //     layerType: 'dynamic_color',
+  //   },
+  //   {
+  //     src: '/images/vizu/6-shadow-multiply-30.png',
+  //     layerType: 'multiply',
+  //   },
+  //   {
+  //     src: '/images/vizu/7-light-screen-60.png',
+  //     layerType: 'screen',
+  //   },
+  //   {
+  //     src: '/images/vizu/last-outline.png',
+  //     layerType: 'normal',
+  //   },
+  // ];
 
   return (
     <section className="flex rounded-3xl shadow-md min-h-[calc(100vh-164px)] lg:min-h-[calc(100vh-190px)] overflow-hidden">
@@ -175,8 +208,17 @@ export default function Landing() {
             </div>
           </div>
         </div>
-        <div className="w-1/2 flex flex-col justify-center items-center font-mono">
-          <VizuCanvas images={images} />
+        <div className="w-1/2 flex justify-center items-center font-mono">
+          {/* <VizuCanvas images={images} /> */}
+          <button className="cursor-pointer" onClick={prevSlide}>
+            <KeyboardArrowLeftIcon fontSize="large" />
+          </button>
+          <div className="w-[500px] h-[600px] overflow-hidden relative">
+            <Carousel slides={slides} current={curSlide} />
+          </div>
+          <button className="cursor-pointer" onClick={nextSlide}>
+            <KeyboardArrowRightIcon fontSize="large" />
+          </button>
         </div>
       </div>
     </section>
