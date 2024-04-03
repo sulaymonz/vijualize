@@ -214,12 +214,20 @@ export default function Landing() {
           </div>
           <div className="w-full h-3 flex justify-center items-center gap-1 text-[8px] leading-[0.75rem]">
             <button
-              className="h-full cursor-pointer bg-black text-white w-14 rounded-l-xl rounded-r-md"
+              className="h-full cursor-pointer bg-black text-white w-14 rounded-l-xl rounded-r-md transition duration-[250ms]"
               onClick={prevSlide}
+              style={
+                curSlide === 0
+                  ? {
+                      opacity: '0.3',
+                      cursor: 'default',
+                    }
+                  : {}
+              }
             >
               L
             </button>
-            <div className="w-16 h-full flex justify-center items-center">
+            <div className="w-16 h-1/2 flex justify-center items-center">
               {slides.map((slide, i) => {
                 let width = 0;
                 if (curSlide === i) {
@@ -243,8 +251,16 @@ export default function Landing() {
             </div>
 
             <button
-              className="h-full cursor-pointer bg-black text-white w-14 rounded-r-xl rounded-l-md"
+              className="h-full cursor-pointer bg-black text-white w-14 rounded-r-xl rounded-l-md duration-[250ms]"
               onClick={nextSlide}
+              style={
+                curSlide === slides.length - 1
+                  ? {
+                      opacity: '0.3',
+                      cursor: 'default',
+                    }
+                  : {}
+              }
             >
               R
             </button>
