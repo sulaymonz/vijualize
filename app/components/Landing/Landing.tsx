@@ -21,23 +21,21 @@ import { HSVtoRGB, RGBtoHEX } from '@/app/utils/converters';
 import { getRandomInt, shuffleArray } from '@/app/utils/randomizers';
 
 const slides = shuffleArray([
-  { src: 'posters/Untitled_Artwork-1.png' },
-  { src: 'posters/Untitled_Artwork-2.png' },
-  { src: 'posters/Untitled_Artwork-3.png' },
-  { src: 'posters/Untitled_Artwork-4.png' },
-  { src: 'posters/Untitled_Artwork-5.png' },
-  { src: 'posters/Untitled_Artwork-6.png' },
-  { src: 'posters/Untitled_Artwork-7.png' },
-  { src: 'posters/Untitled_Artwork-8.png' },
-  { src: 'posters/Untitled_Artwork-9.png' },
-  { src: 'posters/Untitled_Artwork-10.png' },
-  { src: 'posters/Untitled_Artwork-11.png' },
-  { src: 'posters/Untitled_Artwork-12.png' },
-  { src: 'posters/Untitled_Artwork-13.png' },
-  { src: 'posters/Untitled_Artwork-14.png' },
-  { src: 'posters/Untitled_Artwork-15.png' },
-  { src: 'posters/Untitled_Artwork-16.png' },
-  { src: 'posters/Untitled_Artwork-17.png' },
+  { src: 'outfit/Untitled_Artwork-1.png' },
+  { src: 'outfit/Untitled_Artwork-2.png' },
+  { src: 'outfit/Untitled_Artwork-3.png' },
+  { src: 'outfit/Untitled_Artwork-4.png' },
+  { src: 'outfit/Untitled_Artwork-5.png' },
+  { src: 'outfit/Untitled_Artwork-6.png' },
+  { src: 'outfit/Untitled_Artwork-7.png' },
+  { src: 'outfit/Untitled_Artwork-8.png' },
+  { src: 'outfit/Untitled_Artwork-9.png' },
+  { src: 'outfit/Untitled_Artwork-10.png' },
+  { src: 'outfit/Untitled_Artwork-11.png' },
+  { src: 'outfit/Untitled_Artwork-12.png' },
+  { src: 'outfit/Untitled_Artwork-13.png' },
+  { src: 'outfit/Untitled_Artwork-14.png' },
+  { src: 'outfit/Untitled_Artwork-15.png' },
 ]);
 
 export default function Landing() {
@@ -208,18 +206,47 @@ export default function Landing() {
             </div>
           </div>
         </div>
-        <div className="w-1/2 flex flex-col justify-center items-center gap-8">
+        <div className="w-1/2 flex flex-col justify-center items-center gap-4 font-mono">
           <div className="w-full flex justify-center items-center">
             <div className="w-[500px] h-[600px] overflow-hidden relative">
               <Carousel slides={slides} current={curSlide} />
             </div>
           </div>
-          <div className="w-full flex justify-center items-center">
-            <button className="cursor-pointer" onClick={prevSlide}>
-              <KeyboardArrowLeftIcon fontSize="large" />
+          <div className="w-full h-3 flex justify-center items-center gap-1 text-[8px] leading-[0.75rem]">
+            <button
+              className="h-full cursor-pointer bg-black text-white w-14 rounded-l-xl rounded-r-md"
+              onClick={prevSlide}
+            >
+              L
             </button>
-            <button className="cursor-pointer" onClick={nextSlide}>
-              <KeyboardArrowRightIcon fontSize="large" />
+            <div className="w-16 h-full flex justify-center items-center">
+              {slides.map((slide, i) => {
+                let width = 0;
+                if (curSlide === i) {
+                  width = 40;
+                } else if (Math.abs(curSlide - i) === 1) {
+                  width = 8;
+                } else if (Math.abs(curSlide - i) === 2) {
+                  width = 4;
+                }
+                return (
+                  <div
+                    key={slide.src}
+                    className="h-full bg-black rounded-xl transition-all duration-[250ms]"
+                    style={{
+                      width: `${width}px`,
+                      margin: width === 0 ? 'auto 0px' : 'auto 2px',
+                    }}
+                  />
+                );
+              })}
+            </div>
+
+            <button
+              className="h-full cursor-pointer bg-black text-white w-14 rounded-r-xl rounded-l-md"
+              onClick={nextSlide}
+            >
+              R
             </button>
           </div>
         </div>
