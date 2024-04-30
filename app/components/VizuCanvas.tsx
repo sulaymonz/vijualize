@@ -24,11 +24,12 @@ const Canvas = ({ images, onClick = () => {} }) => {
     itemImages.forEach((image, i) => {
       if (images[i].layerType === 'dynamic_color') {
         cvsArr.current[cvsIndex].context.globalCompositeOperation = 'normal';
-        cvsArr.current[cvsIndex].context.clearRect(0, 0, 1500, 1800);
+        cvsArr.current[cvsIndex].context.clearRect(0, 0, 700, 840);
         cvsArr.current[cvsIndex].context.drawImage(image, 0, 0);
         cvsArr.current[cvsIndex].context.globalCompositeOperation = 'source-in';
-        cvsArr.current[cvsIndex].context.fillStyle = palette[cvsIndex].hex;
-        cvsArr.current[cvsIndex].context.fillRect(0, 0, 1500, 1800);
+        const color = palette[images[i].colorIndex].hex;
+        cvsArr.current[cvsIndex].context.fillStyle = color;
+        cvsArr.current[cvsIndex].context.fillRect(0, 0, 700, 840);
         onScreenCtxRef.current.drawImage(
           cvsArr.current[cvsIndex].canvas,
           0,
@@ -78,8 +79,8 @@ const Canvas = ({ images, onClick = () => {} }) => {
     images.forEach((image, i) => {
       if (image.layerType === 'dynamic_color') {
         const cvs = document.createElement('canvas');
-        cvs.width = 1500;
-        cvs.height = 1800;
+        cvs.width = 700;
+        cvs.height = 840;
         cvsArr.current.push({
           canvas: cvs,
           context: cvs.getContext('2d'),
