@@ -20,22 +20,63 @@ import {
 import { HSVtoRGB, RGBtoHEX } from '@/app/utils/converters';
 import { getRandomInt, shuffleArray } from '@/app/utils/randomizers';
 
+const slides = shuffleArray([
+  { src: 'ui/Untitled_Artwork-1.png' },
+  { src: 'ui/Untitled_Artwork-2.png' },
+  { src: 'ui/Untitled_Artwork-3.png' },
+  { src: 'ui/Untitled_Artwork-4.png' },
+  { src: 'ui/Untitled_Artwork-5.png' },
+  { src: 'ui/Untitled_Artwork-6.png' },
+  { src: 'ui/Untitled_Artwork-7.png' },
+  { src: 'ui/Untitled_Artwork-8.png' },
+  { src: 'ui/Untitled_Artwork-9.png' },
+  { src: 'ui/Untitled_Artwork-10.png' },
+  { src: 'ui/Untitled_Artwork-11.png' },
+  { src: 'ui/Untitled_Artwork-12.png' },
+  { src: 'ui/Untitled_Artwork-13.png' },
+  { src: 'ui/Untitled_Artwork-14.png' },
+  { src: 'ui/Untitled_Artwork-15.png' },
+  { src: 'ui/Untitled_Artwork-16.png' },
+  { src: 'ui/Untitled_Artwork-17.png' },
+  { src: 'ui/Untitled_Artwork-18.png' },
+  { src: 'ui/Untitled_Artwork-19.png' },
+]);
+
 // const slides = shuffleArray([
-//   { src: 'outfit/Untitled_Artwork-1.png' },
-//   { src: 'outfit/Untitled_Artwork-2.png' },
-//   { src: 'outfit/Untitled_Artwork-3.png' },
-//   { src: 'outfit/Untitled_Artwork-4.png' },
-//   { src: 'outfit/Untitled_Artwork-5.png' },
-//   { src: 'outfit/Untitled_Artwork-6.png' },
-//   { src: 'outfit/Untitled_Artwork-7.png' },
-//   { src: 'outfit/Untitled_Artwork-8.png' },
-//   { src: 'outfit/Untitled_Artwork-9.png' },
-//   { src: 'outfit/Untitled_Artwork-10.png' },
-//   { src: 'outfit/Untitled_Artwork-11.png' },
-//   { src: 'outfit/Untitled_Artwork-12.png' },
-//   { src: 'outfit/Untitled_Artwork-13.png' },
-//   { src: 'outfit/Untitled_Artwork-14.png' },
-//   { src: 'outfit/Untitled_Artwork-15.png' },
+//   { src: 'posters/Untitled_Artwork-1.png' },
+//   { src: 'posters/Untitled_Artwork-2.png' },
+//   { src: 'posters/Untitled_Artwork-3.png' },
+//   { src: 'posters/Untitled_Artwork-4.png' },
+//   { src: 'posters/Untitled_Artwork-5.png' },
+//   { src: 'posters/Untitled_Artwork-6.png' },
+//   { src: 'posters/Untitled_Artwork-7.png' },
+//   { src: 'posters/Untitled_Artwork-8.png' },
+//   { src: 'posters/Untitled_Artwork-9.png' },
+//   { src: 'posters/Untitled_Artwork-10.png' },
+//   { src: 'posters/Untitled_Artwork-11.png' },
+//   { src: 'posters/Untitled_Artwork-12.png' },
+//   { src: 'posters/Untitled_Artwork-13.png' },
+//   { src: 'posters/Untitled_Artwork-14.png' },
+//   { src: 'posters/Untitled_Artwork-15.png' },
+//   { src: 'posters/Untitled_Artwork-16.png' },
+// ]);
+
+// const slides = shuffleArray([
+//   { src: 'boxing/Untitled_Artwork-1.png' },
+//   { src: 'boxing/Untitled_Artwork-2.png' },
+//   { src: 'boxing/Untitled_Artwork-3.png' },
+//   { src: 'boxing/Untitled_Artwork-4.png' },
+//   { src: 'boxing/Untitled_Artwork-5.png' },
+//   { src: 'boxing/Untitled_Artwork-6.png' },
+//   { src: 'boxing/Untitled_Artwork-7.png' },
+//   { src: 'boxing/Untitled_Artwork-8.png' },
+//   { src: 'boxing/Untitled_Artwork-9.png' },
+//   { src: 'boxing/Untitled_Artwork-10.png' },
+//   { src: 'boxing/Untitled_Artwork-11.png' },
+//   { src: 'boxing/Untitled_Artwork-12.png' },
+//   { src: 'boxing/Untitled_Artwork-13.png' },
+//   { src: 'boxing/Untitled_Artwork-14.png' },
+//   { src: 'boxing/Untitled_Artwork-15.png' },
 // ]);
 
 export default function Landing() {
@@ -51,62 +92,200 @@ export default function Landing() {
     setCurSlide(curSlide > 0 ? curSlide - 1 : curSlide);
   };
 
+  // const images = [
+  //   {
+  //     src: '/images/puffy/1-static.png',
+  //     layerType: 'normal',
+  //   },
+  //   {
+  //     src: '/images/puffy/2-dynamic.png',
+  //     layerType: 'dynamic_color',
+  //     colorIndex: 0,
+  //   },
+  //   {
+  //     src: '/images/puffy/3-dynamic.png',
+  //     layerType: 'dynamic_color',
+  //     colorIndex: 1,
+  //   },
+  //   {
+  //     src: '/images/puffy/4-dynamic.png',
+  //     layerType: 'dynamic_color',
+  //     colorIndex: 4,
+  //   },
+  //   {
+  //     src: '/images/puffy/5-dynamic.png',
+  //     layerType: 'dynamic_color',
+  //     colorIndex: 3,
+  //   },
+  //   {
+  //     src: '/images/puffy/6-dynamic.png',
+  //     layerType: 'dynamic_color',
+  //     colorIndex: 2,
+  //     colorCorrection: 'lighter',
+  //   },
+  //   {
+  //     src: '/images/puffy/7-dynamic.png',
+  //     layerType: 'dynamic_color',
+  //     colorIndex: 2,
+  //     colorCorrection: 'darker',
+  //   },
+  //   {
+  //     src: '/images/puffy/8-dynamic.png',
+  //     layerType: 'dynamic_color',
+  //     colorIndex: 4,
+  //   },
+  //   {
+  //     src: '/images/puffy/9-static.png',
+  //     layerType: 'normal',
+  //   },
+  //   {
+  //     src: '/images/puffy/10-static.png',
+  //     layerType: 'normal',
+  //   },
+  //   {
+  //     src: '/images/puffy/11-static.png',
+  //     layerType: 'normal',
+  //   },
+  //   {
+  //     src: '/images/puffy/12-static.png',
+  //     layerType: 'normal',
+  //   },
+  // ];
+
+  // const images = [
+  //   {
+  //     src: '/images/snowborder/1-dynamic.png',
+  //     layerType: 'dynamic_color',
+  //     colorIndex: 0,
+  //   },
+  //   {
+  //     src: '/images/snowborder/2-dynamic.png',
+  //     layerType: 'dynamic_color',
+  //     colorIndex: 1,
+  //   },
+  //   {
+  //     src: '/images/snowborder/3-dynamic.png',
+  //     layerType: 'dynamic_color',
+  //     colorIndex: 2,
+  //   },
+  //   {
+  //     src: '/images/snowborder/4-dynamic.png',
+  //     layerType: 'dynamic_color',
+  //     colorIndex: 3,
+  //   },
+  //   {
+  //     src: '/images/snowborder/5-dynamic.png',
+  //     layerType: 'dynamic_color',
+  //     colorIndex: 4,
+  //   },
+  //   {
+  //     src: '/images/snowborder/6-static.png',
+  //     layerType: 'normal',
+  //   },
+  //   {
+  //     src: '/images/snowborder/7-static.png',
+  //     layerType: 'normal',
+  //   },
+  //   {
+  //     src: '/images/snowborder/8-static.png',
+  //     layerType: 'normal',
+  //   },
+  //   {
+  //     src: '/images/snowborder/9-static.png',
+  //     layerType: 'normal',
+  //   },
+  // ];
+
+  // const images = [
+  //   {
+  //     src: '/images/vibes/1-static.png',
+  //     layerType: 'normal',
+  //   },
+  //   {
+  //     src: '/images/vibes/2-dynamic.png',
+  //     layerType: 'dynamic_color',
+  //     colorIndex: 4,
+  //   },
+  //   {
+  //     src: '/images/vibes/3-dynamic.png',
+  //     layerType: 'dynamic_color',
+  //     colorIndex: 0,
+  //   },
+  //   {
+  //     src: '/images/vibes/4-dynamic.png',
+  //     layerType: 'dynamic_color',
+  //     colorIndex: 2,
+  //   },
+  //   {
+  //     src: '/images/vibes/5-dynamic.png',
+  //     layerType: 'dynamic_color',
+  //     colorIndex: 3,
+  //   },
+  //   {
+  //     src: '/images/vibes/6-static.png',
+  //     layerType: 'outline_on_bg',
+  //     bgColorIndex: 3,
+  //   },
+  //   {
+  //     src: '/images/vibes/7-static.png',
+  //     layerType: 'normal',
+  //   },
+  //   {
+  //     src: '/images/vibes/8-dynamic.png',
+  //     layerType: 'dynamic_color',
+  //     colorIndex: 3,
+  //   },
+  //   {
+  //     src: '/images/vibes/9-dynamic.png',
+  //     layerType: 'dynamic_color',
+  //     colorIndex: 1,
+  //   },
+  //   {
+  //     src: '/images/vibes/10-static.png',
+  //     layerType: 'normal',
+  //   },
+  //   {
+  //     src: '/images/vibes/11-static.png',
+  //     layerType: 'normal',
+  //   },
+  // ];
+
   const images = [
     {
-      src: '/images/puffy/1-static.png',
-      layerType: 'normal',
-    },
-    {
-      src: '/images/puffy/2-dynamic.png',
+      src: '/images/sneaker/1-dynamic.png',
       layerType: 'dynamic_color',
       colorIndex: 0,
     },
     {
-      src: '/images/puffy/3-dynamic.png',
+      src: '/images/sneaker/2-static.png',
+      layerType: 'normal',
+    },
+    {
+      src: '/images/sneaker/3-dynamic.png',
       layerType: 'dynamic_color',
       colorIndex: 1,
     },
     {
-      src: '/images/puffy/4-dynamic.png',
+      src: '/images/sneaker/4-dynamic.png',
       layerType: 'dynamic_color',
-      colorIndex: 4,
+      colorIndex: 2,
     },
     {
-      src: '/images/puffy/5-dynamic.png',
+      src: '/images/sneaker/5-dynamic.png',
       layerType: 'dynamic_color',
       colorIndex: 3,
     },
     {
-      src: '/images/puffy/6-dynamic.png',
-      layerType: 'dynamic_color',
-      colorIndex: 2,
-      colorCorrection: 'lighter',
-    },
-    {
-      src: '/images/puffy/7-dynamic.png',
-      layerType: 'dynamic_color',
-      colorIndex: 2,
-      colorCorrection: 'darker',
-    },
-    {
-      src: '/images/puffy/8-dynamic.png',
+      src: '/images/sneaker/6-dynamic.png',
       layerType: 'dynamic_color',
       colorIndex: 4,
     },
     {
-      src: '/images/puffy/9-static.png',
+      src: '/images/sneaker/7-static.png',
       layerType: 'normal',
     },
     {
-      src: '/images/puffy/10-static.png',
-      layerType: 'normal',
-    },
-    {
-      src: '/images/puffy/11-static.png',
-      layerType: 'normal',
-    },
-    {
-      src: '/images/puffy/12-static.png',
+      src: '/images/sneaker/8-static.png',
       layerType: 'normal',
     },
   ];
@@ -180,33 +359,51 @@ export default function Landing() {
                     case 0:
                       newPalette = generateMonochromePalette().map((hsv) => ({
                         hex: RGBtoHEX(HSVtoRGB(hsv)),
+                        h: hsv.h,
+                        s: hsv.s,
+                        v: hsv.v,
                       }));
                       break;
                     case 1:
                       newPalette = generateAnalogousPalette().map((hsv) => ({
                         hex: RGBtoHEX(HSVtoRGB(hsv)),
+                        h: hsv.h,
+                        s: hsv.s,
+                        v: hsv.v,
                       }));
                       break;
                     case 2:
                       newPalette = generateTetradicPalette().map((hsv) => ({
                         hex: RGBtoHEX(HSVtoRGB(hsv)),
+                        h: hsv.h,
+                        s: hsv.s,
+                        v: hsv.v,
                       }));
                       break;
                     case 3:
                       newPalette = generateSquarePalette().map((hsv) => ({
                         hex: RGBtoHEX(HSVtoRGB(hsv)),
+                        h: hsv.h,
+                        s: hsv.s,
+                        v: hsv.v,
                       }));
                       break;
                     case 4:
                       newPalette = generateSplitComplementaryPalette().map(
                         (hsv) => ({
                           hex: RGBtoHEX(HSVtoRGB(hsv)),
+                          h: hsv.h,
+                          s: hsv.s,
+                          v: hsv.v,
                         }),
                       );
                       break;
                     case 5:
                       newPalette = generateTriadicPalette().map((hsv) => ({
                         hex: RGBtoHEX(HSVtoRGB(hsv)),
+                        h: hsv.h,
+                        s: hsv.s,
+                        v: hsv.v,
                       }));
                       break;
                     default:
@@ -241,9 +438,9 @@ export default function Landing() {
           {/*     style={ */}
           {/*       curSlide === 0 */}
           {/*         ? { */}
-          {/*           opacity: '0.3', */}
-          {/*           cursor: 'default', */}
-          {/*         } */}
+          {/*             opacity: '0.3', */}
+          {/*             cursor: 'default', */}
+          {/*           } */}
           {/*         : {} */}
           {/*     } */}
           {/*   > */}
@@ -278,9 +475,9 @@ export default function Landing() {
           {/*     style={ */}
           {/*       curSlide === slides.length - 1 */}
           {/*         ? { */}
-          {/*           opacity: '0.3', */}
-          {/*           cursor: 'default', */}
-          {/*         } */}
+          {/*             opacity: '0.3', */}
+          {/*             cursor: 'default', */}
+          {/*           } */}
           {/*         : {} */}
           {/*     } */}
           {/*   > */}

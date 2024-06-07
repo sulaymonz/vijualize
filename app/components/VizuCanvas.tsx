@@ -9,7 +9,7 @@ import LoadingSpinner from './LoadingSpinner';
 const fullConfig = resolveConfig(tailwindConfig);
 let curLoadedResNum = 0;
 
-const Canvas = ({ images, onClick = () => {} }) => {
+const Canvas = ({ images, onClick = () => { } }) => {
   const totalResToLoad = images.length;
   const onScreenCvsRef = useRef();
   const onScreenCtxRef = useRef();
@@ -20,7 +20,7 @@ const Canvas = ({ images, onClick = () => {} }) => {
 
   const redrawCanvas = () => {
     let cvsIndex = 0;
-    onScreenCtxRef.current.clearRect(0, 0, 500, 600);
+    onScreenCtxRef.current.clearRect(0, 0, 1000, 1200);
     itemImages.forEach((image, i) => {
       if (images[i].layerType === 'dynamic_color') {
         cvsArr.current[cvsIndex].context.globalCompositeOperation = 'normal';
@@ -34,12 +34,28 @@ const Canvas = ({ images, onClick = () => {} }) => {
           cvsArr.current[cvsIndex].canvas,
           0,
           0,
-          500,
-          600,
+          1000,
+          1200,
+        );
+        cvsIndex++;
+      } else if (images[i].layerType === 'outline_on_bg') {
+        cvsArr.current[cvsIndex].context.globalCompositeOperation = 'normal';
+        cvsArr.current[cvsIndex].context.clearRect(0, 0, 700, 840);
+        cvsArr.current[cvsIndex].context.drawImage(image, 0, 0);
+        cvsArr.current[cvsIndex].context.globalCompositeOperation = 'source-in';
+        const color = palette[images[i].bgColorIndex].v > 50 ? '#000000' : '#ffffff';
+        cvsArr.current[cvsIndex].context.fillStyle = color;
+        cvsArr.current[cvsIndex].context.fillRect(0, 0, 700, 840);
+        onScreenCtxRef.current.drawImage(
+          cvsArr.current[cvsIndex].canvas,
+          0,
+          0,
+          1000,
+          1200,
         );
         cvsIndex++;
       } else {
-        onScreenCtxRef.current.drawImage(image, 0, 0, 500, 600);
+        onScreenCtxRef.current.drawImage(image, 0, 0, 1000, 1200);
       }
     });
   };
@@ -113,10 +129,10 @@ const Canvas = ({ images, onClick = () => {} }) => {
         </div>
       )}
       <canvas
-        className="bg-white"
+        className="bg-white w-[500px] h-[600px]"
         ref={onScreenCvsRef}
-        width="500"
-        height="600"
+        width="1000"
+        height="1200"
         onClick={onClick}
       />
     </>
