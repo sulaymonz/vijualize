@@ -5,10 +5,8 @@ import { useSelector, useDispatch } from 'react-redux';
 import * as landingActions from '../../../store/actions/landingActions';
 import RefreshIcon from '@mui/icons-material/Refresh';
 import Sidebar from './Sidebar';
-import VizuCanvas from '../VizuCanvas';
-import Carousel from '../Carousel';
-import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft';
-import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
+// import Carousel from '../Carousel';
+import CanvasCarousel from '../CanvasCarousel';
 import {
   generateMonochromePalette,
   generateAnalogousPalette,
@@ -20,278 +18,230 @@ import {
 import { HSVtoRGB, RGBtoHEX } from '@/app/utils/converters';
 import { getRandomInt, shuffleArray } from '@/app/utils/randomizers';
 
-const slides = shuffleArray([
-  { src: 'ui/Untitled_Artwork-1.png' },
-  { src: 'ui/Untitled_Artwork-2.png' },
-  { src: 'ui/Untitled_Artwork-3.png' },
-  { src: 'ui/Untitled_Artwork-4.png' },
-  { src: 'ui/Untitled_Artwork-5.png' },
-  { src: 'ui/Untitled_Artwork-6.png' },
-  { src: 'ui/Untitled_Artwork-7.png' },
-  { src: 'ui/Untitled_Artwork-8.png' },
-  { src: 'ui/Untitled_Artwork-9.png' },
-  { src: 'ui/Untitled_Artwork-10.png' },
-  { src: 'ui/Untitled_Artwork-11.png' },
-  { src: 'ui/Untitled_Artwork-12.png' },
-  { src: 'ui/Untitled_Artwork-13.png' },
-  { src: 'ui/Untitled_Artwork-14.png' },
-  { src: 'ui/Untitled_Artwork-15.png' },
-  { src: 'ui/Untitled_Artwork-16.png' },
-  { src: 'ui/Untitled_Artwork-17.png' },
-  { src: 'ui/Untitled_Artwork-18.png' },
-  { src: 'ui/Untitled_Artwork-19.png' },
-]);
-
-// const slides = shuffleArray([
-//   { src: 'posters/Untitled_Artwork-1.png' },
-//   { src: 'posters/Untitled_Artwork-2.png' },
-//   { src: 'posters/Untitled_Artwork-3.png' },
-//   { src: 'posters/Untitled_Artwork-4.png' },
-//   { src: 'posters/Untitled_Artwork-5.png' },
-//   { src: 'posters/Untitled_Artwork-6.png' },
-//   { src: 'posters/Untitled_Artwork-7.png' },
-//   { src: 'posters/Untitled_Artwork-8.png' },
-//   { src: 'posters/Untitled_Artwork-9.png' },
-//   { src: 'posters/Untitled_Artwork-10.png' },
-//   { src: 'posters/Untitled_Artwork-11.png' },
-//   { src: 'posters/Untitled_Artwork-12.png' },
-//   { src: 'posters/Untitled_Artwork-13.png' },
-//   { src: 'posters/Untitled_Artwork-14.png' },
-//   { src: 'posters/Untitled_Artwork-15.png' },
-//   { src: 'posters/Untitled_Artwork-16.png' },
-// ]);
-
-// const slides = shuffleArray([
-//   { src: 'boxing/Untitled_Artwork-1.png' },
-//   { src: 'boxing/Untitled_Artwork-2.png' },
-//   { src: 'boxing/Untitled_Artwork-3.png' },
-//   { src: 'boxing/Untitled_Artwork-4.png' },
-//   { src: 'boxing/Untitled_Artwork-5.png' },
-//   { src: 'boxing/Untitled_Artwork-6.png' },
-//   { src: 'boxing/Untitled_Artwork-7.png' },
-//   { src: 'boxing/Untitled_Artwork-8.png' },
-//   { src: 'boxing/Untitled_Artwork-9.png' },
-//   { src: 'boxing/Untitled_Artwork-10.png' },
-//   { src: 'boxing/Untitled_Artwork-11.png' },
-//   { src: 'boxing/Untitled_Artwork-12.png' },
-//   { src: 'boxing/Untitled_Artwork-13.png' },
-//   { src: 'boxing/Untitled_Artwork-14.png' },
-//   { src: 'boxing/Untitled_Artwork-15.png' },
-// ]);
-
 export default function Landing() {
   const { palette } = useSelector((state) => state.landing);
   const dispatch = useDispatch();
   const [curSlide, setCurSlide] = useState(0);
 
   const nextSlide = () => {
-    setCurSlide(curSlide < slides.length - 1 ? curSlide + 1 : curSlide);
+    setCurSlide(curSlide < designs.length - 1 ? curSlide + 1 : curSlide);
   };
 
   const prevSlide = () => {
     setCurSlide(curSlide > 0 ? curSlide - 1 : curSlide);
   };
 
-  // const images = [
-  //   {
-  //     src: '/images/puffy/1-static.png',
-  //     layerType: 'normal',
-  //   },
-  //   {
-  //     src: '/images/puffy/2-dynamic.png',
-  //     layerType: 'dynamic_color',
-  //     colorIndex: 0,
-  //   },
-  //   {
-  //     src: '/images/puffy/3-dynamic.png',
-  //     layerType: 'dynamic_color',
-  //     colorIndex: 1,
-  //   },
-  //   {
-  //     src: '/images/puffy/4-dynamic.png',
-  //     layerType: 'dynamic_color',
-  //     colorIndex: 4,
-  //   },
-  //   {
-  //     src: '/images/puffy/5-dynamic.png',
-  //     layerType: 'dynamic_color',
-  //     colorIndex: 3,
-  //   },
-  //   {
-  //     src: '/images/puffy/6-dynamic.png',
-  //     layerType: 'dynamic_color',
-  //     colorIndex: 2,
-  //     colorCorrection: 'lighter',
-  //   },
-  //   {
-  //     src: '/images/puffy/7-dynamic.png',
-  //     layerType: 'dynamic_color',
-  //     colorIndex: 2,
-  //     colorCorrection: 'darker',
-  //   },
-  //   {
-  //     src: '/images/puffy/8-dynamic.png',
-  //     layerType: 'dynamic_color',
-  //     colorIndex: 4,
-  //   },
-  //   {
-  //     src: '/images/puffy/9-static.png',
-  //     layerType: 'normal',
-  //   },
-  //   {
-  //     src: '/images/puffy/10-static.png',
-  //     layerType: 'normal',
-  //   },
-  //   {
-  //     src: '/images/puffy/11-static.png',
-  //     layerType: 'normal',
-  //   },
-  //   {
-  //     src: '/images/puffy/12-static.png',
-  //     layerType: 'normal',
-  //   },
-  // ];
-
-  // const images = [
-  //   {
-  //     src: '/images/snowborder/1-dynamic.png',
-  //     layerType: 'dynamic_color',
-  //     colorIndex: 0,
-  //   },
-  //   {
-  //     src: '/images/snowborder/2-dynamic.png',
-  //     layerType: 'dynamic_color',
-  //     colorIndex: 1,
-  //   },
-  //   {
-  //     src: '/images/snowborder/3-dynamic.png',
-  //     layerType: 'dynamic_color',
-  //     colorIndex: 2,
-  //   },
-  //   {
-  //     src: '/images/snowborder/4-dynamic.png',
-  //     layerType: 'dynamic_color',
-  //     colorIndex: 3,
-  //   },
-  //   {
-  //     src: '/images/snowborder/5-dynamic.png',
-  //     layerType: 'dynamic_color',
-  //     colorIndex: 4,
-  //   },
-  //   {
-  //     src: '/images/snowborder/6-static.png',
-  //     layerType: 'normal',
-  //   },
-  //   {
-  //     src: '/images/snowborder/7-static.png',
-  //     layerType: 'normal',
-  //   },
-  //   {
-  //     src: '/images/snowborder/8-static.png',
-  //     layerType: 'normal',
-  //   },
-  //   {
-  //     src: '/images/snowborder/9-static.png',
-  //     layerType: 'normal',
-  //   },
-  // ];
-
-  // const images = [
-  //   {
-  //     src: '/images/vibes/1-static.png',
-  //     layerType: 'normal',
-  //   },
-  //   {
-  //     src: '/images/vibes/2-dynamic.png',
-  //     layerType: 'dynamic_color',
-  //     colorIndex: 4,
-  //   },
-  //   {
-  //     src: '/images/vibes/3-dynamic.png',
-  //     layerType: 'dynamic_color',
-  //     colorIndex: 0,
-  //   },
-  //   {
-  //     src: '/images/vibes/4-dynamic.png',
-  //     layerType: 'dynamic_color',
-  //     colorIndex: 2,
-  //   },
-  //   {
-  //     src: '/images/vibes/5-dynamic.png',
-  //     layerType: 'dynamic_color',
-  //     colorIndex: 3,
-  //   },
-  //   {
-  //     src: '/images/vibes/6-static.png',
-  //     layerType: 'outline_on_bg',
-  //     bgColorIndex: 3,
-  //   },
-  //   {
-  //     src: '/images/vibes/7-static.png',
-  //     layerType: 'normal',
-  //   },
-  //   {
-  //     src: '/images/vibes/8-dynamic.png',
-  //     layerType: 'dynamic_color',
-  //     colorIndex: 3,
-  //   },
-  //   {
-  //     src: '/images/vibes/9-dynamic.png',
-  //     layerType: 'dynamic_color',
-  //     colorIndex: 1,
-  //   },
-  //   {
-  //     src: '/images/vibes/10-static.png',
-  //     layerType: 'normal',
-  //   },
-  //   {
-  //     src: '/images/vibes/11-static.png',
-  //     layerType: 'normal',
-  //   },
-  // ];
-
-  const images = [
+  const designs = [
     {
-      src: '/images/sneaker/1-dynamic.png',
-      layerType: 'dynamic_color',
-      colorIndex: 0,
+      id: 'puffy1',
+      images: [
+        {
+          src: '/images/puffy/1-static.png',
+          layerType: 'normal',
+        },
+        {
+          src: '/images/puffy/2-dynamic.png',
+          layerType: 'dynamic_color',
+          colorIndex: 0,
+        },
+        {
+          src: '/images/puffy/3-dynamic.png',
+          layerType: 'dynamic_color',
+          colorIndex: 1,
+        },
+        {
+          src: '/images/puffy/4-dynamic.png',
+          layerType: 'dynamic_color',
+          colorIndex: 4,
+        },
+        {
+          src: '/images/puffy/5-dynamic.png',
+          layerType: 'dynamic_color',
+          colorIndex: 3,
+        },
+        {
+          src: '/images/puffy/6-dynamic.png',
+          layerType: 'dynamic_color',
+          colorIndex: 2,
+          colorCorrection: 'lighter',
+        },
+        {
+          src: '/images/puffy/7-dynamic.png',
+          layerType: 'dynamic_color',
+          colorIndex: 2,
+          colorCorrection: 'darker',
+        },
+        {
+          src: '/images/puffy/8-dynamic.png',
+          layerType: 'dynamic_color',
+          colorIndex: 4,
+        },
+        {
+          src: '/images/puffy/9-static.png',
+          layerType: 'normal',
+        },
+        {
+          src: '/images/puffy/10-static.png',
+          layerType: 'normal',
+        },
+        {
+          src: '/images/puffy/11-static.png',
+          layerType: 'normal',
+        },
+        {
+          src: '/images/puffy/12-static.png',
+          layerType: 'normal',
+        },
+      ],
     },
     {
-      src: '/images/sneaker/2-static.png',
-      layerType: 'normal',
+      id: 'sneaker1',
+      images: [
+        {
+          src: '/images/sneaker/1-dynamic.png',
+          layerType: 'dynamic_color',
+          colorIndex: 0,
+        },
+        {
+          src: '/images/sneaker/2-static.png',
+          layerType: 'normal',
+        },
+        {
+          src: '/images/sneaker/3-dynamic.png',
+          layerType: 'dynamic_color',
+          colorIndex: 1,
+        },
+        {
+          src: '/images/sneaker/4-dynamic.png',
+          layerType: 'dynamic_color',
+          colorIndex: 2,
+        },
+        {
+          src: '/images/sneaker/5-dynamic.png',
+          layerType: 'dynamic_color',
+          colorIndex: 3,
+        },
+        {
+          src: '/images/sneaker/6-dynamic.png',
+          layerType: 'dynamic_color',
+          colorIndex: 4,
+        },
+        {
+          src: '/images/sneaker/7-static.png',
+          layerType: 'normal',
+        },
+        {
+          src: '/images/sneaker/8-static.png',
+          layerType: 'normal',
+        },
+      ],
     },
     {
-      src: '/images/sneaker/3-dynamic.png',
-      layerType: 'dynamic_color',
-      colorIndex: 1,
+      id: 'vibes1',
+      images: [
+        {
+          src: '/images/vibes/1-static.png',
+          layerType: 'normal',
+        },
+        {
+          src: '/images/vibes/2-dynamic.png',
+          layerType: 'dynamic_color',
+          colorIndex: 4,
+        },
+        {
+          src: '/images/vibes/3-dynamic.png',
+          layerType: 'dynamic_color',
+          colorIndex: 0,
+        },
+        {
+          src: '/images/vibes/4-dynamic.png',
+          layerType: 'dynamic_color',
+          colorIndex: 2,
+        },
+        {
+          src: '/images/vibes/5-dynamic.png',
+          layerType: 'dynamic_color',
+          colorIndex: 3,
+        },
+        {
+          src: '/images/vibes/6-static.png',
+          layerType: 'outline_on_bg',
+          bgColorIndex: 3,
+        },
+        {
+          src: '/images/vibes/7-static.png',
+          layerType: 'normal',
+        },
+        {
+          src: '/images/vibes/8-dynamic.png',
+          layerType: 'dynamic_color',
+          colorIndex: 3,
+        },
+        {
+          src: '/images/vibes/9-dynamic.png',
+          layerType: 'dynamic_color',
+          colorIndex: 1,
+        },
+        {
+          src: '/images/vibes/10-static.png',
+          layerType: 'normal',
+        },
+        {
+          src: '/images/vibes/11-static.png',
+          layerType: 'normal',
+        },
+      ],
     },
     {
-      src: '/images/sneaker/4-dynamic.png',
-      layerType: 'dynamic_color',
-      colorIndex: 2,
-    },
-    {
-      src: '/images/sneaker/5-dynamic.png',
-      layerType: 'dynamic_color',
-      colorIndex: 3,
-    },
-    {
-      src: '/images/sneaker/6-dynamic.png',
-      layerType: 'dynamic_color',
-      colorIndex: 4,
-    },
-    {
-      src: '/images/sneaker/7-static.png',
-      layerType: 'normal',
-    },
-    {
-      src: '/images/sneaker/8-static.png',
-      layerType: 'normal',
+      id: 'snowboarder1',
+      images: [
+        {
+          src: '/images/snowborder/1-dynamic.png',
+          layerType: 'dynamic_color',
+          colorIndex: 0,
+        },
+        {
+          src: '/images/snowborder/2-dynamic.png',
+          layerType: 'dynamic_color',
+          colorIndex: 1,
+        },
+        {
+          src: '/images/snowborder/3-dynamic.png',
+          layerType: 'dynamic_color',
+          colorIndex: 2,
+        },
+        {
+          src: '/images/snowborder/4-dynamic.png',
+          layerType: 'dynamic_color',
+          colorIndex: 3,
+        },
+        {
+          src: '/images/snowborder/5-dynamic.png',
+          layerType: 'dynamic_color',
+          colorIndex: 4,
+        },
+        {
+          src: '/images/snowborder/6-static.png',
+          layerType: 'normal',
+        },
+        {
+          src: '/images/snowborder/7-static.png',
+          layerType: 'normal',
+        },
+        {
+          src: '/images/snowborder/8-static.png',
+          layerType: 'normal',
+        },
+        {
+          src: '/images/snowborder/9-static.png',
+          layerType: 'normal',
+        },
+      ],
     },
   ];
 
   return (
-    <section className="flex rounded-3xl shadow-md min-h-[calc(100vh-164px)] lg:min-h-[calc(100vh-190px)] overflow-hidden">
+    <section className="flex rounded-3xl shadow-md h-[680px] overflow-hidden">
       <div className="flex-none w-[130px] bg-[#f9f9f9]">
         <Sidebar />
       </div>
@@ -425,65 +375,65 @@ export default function Landing() {
           </div>
         </div>
         <div className="w-1/2 flex flex-col justify-center items-center gap-4 font-mon font-bold">
-          <VizuCanvas images={images} />
-          {/* <div className="w-full flex justify-center items-center"> */}
-          {/*   <div className="w-[500px] h-[600px] overflow-hidden relative"> */}
-          {/*     <Carousel slides={slides} current={curSlide} /> */}
-          {/*   </div> */}
-          {/* </div> */}
-          {/* <div className="w-full h-3 flex justify-center items-center gap-1 text-[8px] leading-[0.75rem]"> */}
-          {/*   <button */}
-          {/*     className="h-full cursor-pointer bg-black text-white w-14 rounded-l-xl rounded-r-md transition duration-[250ms]" */}
-          {/*     onClick={prevSlide} */}
-          {/*     style={ */}
-          {/*       curSlide === 0 */}
-          {/*         ? { */}
-          {/*             opacity: '0.3', */}
-          {/*             cursor: 'default', */}
-          {/*           } */}
-          {/*         : {} */}
-          {/*     } */}
-          {/*   > */}
-          {/*     L */}
-          {/*   </button> */}
-          {/*   <div className="w-16 h-1/2 flex justify-center items-center"> */}
-          {/*     {slides.map((slide, i) => { */}
-          {/*       let width = 0; */}
-          {/*       if (curSlide === i) { */}
-          {/*         width = 40; */}
-          {/*       } else if (Math.abs(curSlide - i) === 1) { */}
-          {/*         width = 8; */}
-          {/*       } else if (Math.abs(curSlide - i) === 2) { */}
-          {/*         width = 4; */}
-          {/*       } */}
-          {/*       return ( */}
-          {/*         <div */}
-          {/*           key={slide.src} */}
-          {/*           className="h-full bg-black rounded-xl transition-all duration-[250ms]" */}
-          {/*           style={{ */}
-          {/*             width: `${width}px`, */}
-          {/*             margin: width === 0 ? 'auto 0px' : 'auto 2px', */}
-          {/*           }} */}
-          {/*         /> */}
-          {/*       ); */}
-          {/*     })} */}
-          {/*   </div> */}
-          {/**/}
-          {/*   <button */}
-          {/*     className="h-full cursor-pointer bg-black text-white w-14 rounded-r-xl rounded-l-md duration-[250ms]" */}
-          {/*     onClick={nextSlide} */}
-          {/*     style={ */}
-          {/*       curSlide === slides.length - 1 */}
-          {/*         ? { */}
-          {/*             opacity: '0.3', */}
-          {/*             cursor: 'default', */}
-          {/*           } */}
-          {/*         : {} */}
-          {/*     } */}
-          {/*   > */}
-          {/*     R */}
-          {/*   </button> */}
-          {/* </div> */}
+          <div className="w-full flex justify-center items-center">
+            <div className="w-[500px] h-[600px] overflow-hidden relative">
+              {/* <Carousel slides={slides} current={curSlide} /> */}
+              <CanvasCarousel slides={designs} current={curSlide} />
+            </div>
+          </div>
+          <div className="w-full h-3 flex justify-center items-center gap-1 text-[8px] leading-[0.75rem]">
+            <button
+              className="h-full cursor-pointer bg-black text-white w-14 rounded-l-xl rounded-r-md transition duration-[250ms]"
+              onClick={prevSlide}
+              style={
+                curSlide === 0
+                  ? {
+                      opacity: '0.3',
+                      cursor: 'default',
+                    }
+                  : {}
+              }
+            >
+              L
+            </button>
+            <div className="w-16 h-1/2 flex justify-center items-center">
+              {designs.map((slide, i) => {
+                let width = 0;
+                if (curSlide === i) {
+                  width = 40;
+                } else if (Math.abs(curSlide - i) === 1) {
+                  width = 8;
+                } else if (Math.abs(curSlide - i) === 2) {
+                  width = 4;
+                }
+                return (
+                  <div
+                    key={slide.id}
+                    className="h-full bg-black rounded-xl transition-all duration-[250ms]"
+                    style={{
+                      width: `${width}px`,
+                      margin: width === 0 ? 'auto 0px' : 'auto 2px',
+                    }}
+                  />
+                );
+              })}
+            </div>
+
+            <button
+              className="h-full cursor-pointer bg-black text-white w-14 rounded-r-xl rounded-l-md duration-[250ms]"
+              onClick={nextSlide}
+              style={
+                curSlide === designs.length - 1
+                  ? {
+                      opacity: '0.3',
+                      cursor: 'default',
+                    }
+                  : {}
+              }
+            >
+              R
+            </button>
+          </div>
         </div>
       </div>
     </section>

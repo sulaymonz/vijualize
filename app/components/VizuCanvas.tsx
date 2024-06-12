@@ -7,9 +7,9 @@ import tailwindConfig from '../../tailwind.config';
 import LoadingSpinner from './LoadingSpinner';
 
 const fullConfig = resolveConfig(tailwindConfig);
-let curLoadedResNum = 0;
+let curLoadedResNum = {};
 
-const Canvas = ({ images, onClick = () => { } }) => {
+const Canvas = ({ designId, images, onClick = () => { } }) => {
   const totalResToLoad = images.length;
   const onScreenCvsRef = useRef();
   const onScreenCtxRef = useRef();
@@ -61,7 +61,7 @@ const Canvas = ({ images, onClick = () => { } }) => {
   };
 
   const resourceLoaded = () => {
-    curLoadedResNum++;
+    curLoadedResNum[designId] = curLoadedResNum[designId] + 1;
   };
 
   const handleImageLoad = (e) => {
@@ -75,7 +75,7 @@ const Canvas = ({ images, onClick = () => { } }) => {
   };
 
   useEffect(() => {
-    if (curLoadedResNum === totalResToLoad) {
+    if (curLoadedResNum[designId] === totalResToLoad) {
       setLoading(false);
       redrawCanvas();
     }
@@ -88,6 +88,7 @@ const Canvas = ({ images, onClick = () => { } }) => {
   }, [palette]);
 
   useEffect(() => {
+    curLoadedResNum[designId] = 0;
     onScreenCtxRef.current = onScreenCvsRef.current.getContext('2d');
 
     setItemImages([]);
@@ -114,7 +115,7 @@ const Canvas = ({ images, onClick = () => { } }) => {
       tempImages.forEach((image) => {
         image.removeEventListener('load', handleImageLoad);
       });
-      curLoadedResNum = 0;
+      curLoadedResNum[designId] = 0;
     };
   }, []);
 
