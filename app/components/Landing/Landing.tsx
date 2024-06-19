@@ -51,12 +51,12 @@ export default function Landing() {
   ];
 
   return (
-    <section className="flex rounded-3xl shadow-md h-[680px] overflow-hidden">
-      <div className="flex-none w-[130px] bg-[#f9f9f9]">
+    <section className="flex rounded-3xl border h-[680px] overflow-hidden">
+      <div className="flex-none w-[130px]">
         <Sidebar />
       </div>
       <div className="grow flex flex-row">
-        <div className="w-1/2 flex flex-col justify-center gap-8 items-center bg-[#f9f9f9]">
+        <div className="w-1/2 flex flex-col justify-center gap-8 items-center">
           <div className="flex flex-col justify-start">
             <h1 className="text-4xl font-mono font-bold my-2">Color palette</h1>
             <h3 className="text-lg font-light">
