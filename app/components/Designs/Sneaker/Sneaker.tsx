@@ -3,6 +3,7 @@
 import { useSelector } from 'react-redux';
 import VizuCanvas from '../../VizuCanvas';
 import { HSVtoRGB } from '@/app/utils/converters';
+import Barcode from './Barcode';
 
 const images = [
   {
@@ -54,10 +55,38 @@ const Sneaker = ({ inLoadingZone, id, slidePosition }) => {
         // style={{ left: `${100 * slidePosition}%` }}
       >
         <div
-          className="absolute w-[500px] h-[500px] top-[50px] rounded-full left-0"
+          className="absolute w-[400px] h-[400px] top-[90px] rounded-full left-[50px]"
           style={{
-            background: `linear-gradient(#ffffff, rgb(${r}, ${g}, ${b}))`,
+            background: `linear-gradient(to right, rgb(${r}, ${g}, ${b}), rgba(${r}, ${g}, ${b}, 0.3))`,
+            // background: `rgb(${r}, ${g}, ${b})`,
           }}
+        />
+      </div>
+      <div className="absolute w-[80%] h-[10%] top-[20%] left-[10%] flex flex-row font-mono">
+        <div className="w-[195px] p-[10px] leading-none flex flex-col justify-end border-r">
+          <div className="text-xs leading-none pb-1">
+            #<br />
+            03
+            <br />
+            SNEAKER_
+          </div>
+        </div>
+        <div className="flex flex-col justify-end font-sans">
+          <div className="text-[7px] p-[10px] leading-none">
+            The future isn't coming — it's already here. Slip into these shoes
+            and experience tomorrow while you're living for today. An evolution
+            of the acclaimed '80s runner, these sneakers have an upper as airy
+            as it is futuristic. Overlays lend a cyberpunk vibe, while the
+            outsole stays confidently ahead of its time. Yet for all their
+            forward-thinking style, these shoes keep comfort close.
+          </div>
+        </div>
+      </div>
+      <div className="absolute w-full flex justify-center top-[73%]">
+        <Barcode
+          className="absolute w-[20%] h-auto"
+          rgb={{ r: r, g: g, b: b }}
+          // fill={`rgb(${r}, ${g}, ${b})`}
         />
       </div>
       {inLoadingZone ? <VizuCanvas designId={id} images={images} /> : ''}
