@@ -1,7 +1,7 @@
-import Puffy from './Designs/Puffy';
-import Sneaker from './Designs/Sneaker';
-import Vibes from './Designs/Vibes';
-import Snowborder from './Designs/Snowboarder';
+import Puffy from './Designs/Puffy/Puffy';
+import Sneaker from './Designs/Sneaker/Sneaker';
+import Vibes from './Designs/Vibes/Vibes';
+import Snowborder from './Designs/Snowboarder/Snowboarder';
 
 const designs = {
   Puffy: Puffy,

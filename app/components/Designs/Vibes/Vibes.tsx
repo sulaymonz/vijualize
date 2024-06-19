@@ -1,7 +1,7 @@
 'use client';
 
 import { useSelector } from 'react-redux';
-import VizuCanvas from '../VizuCanvas';
+import VizuCanvas from '../../VizuCanvas';
 import { HSVtoRGB } from '@/app/utils/converters';
 
 const images = [
