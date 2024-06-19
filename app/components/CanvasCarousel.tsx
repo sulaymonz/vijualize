@@ -1,6 +1,14 @@
-'use client';
+import Puffy from './Designs/Puffy';
+import Sneaker from './Designs/Sneaker';
+import Vibes from './Designs/Vibes';
+import Snowborder from './Designs/Snowboarder';
 
-import VizuCanvas from './VizuCanvas';
+const designs = {
+  Puffy: Puffy,
+  Sneaker: Sneaker,
+  Vibes: Vibes,
+  Snowboarder: Snowborder,
+};
 
 const CanvasCarousel = ({ slides, current }) => {
   return (
@@ -9,15 +17,17 @@ const CanvasCarousel = ({ slides, current }) => {
       style={{ transform: `translateX(-${100 * current}%)` }}
     >
       {slides.map((slide, i) => {
+        const Design = designs[slide.name];
         const inLoadingZone = Math.abs(current - i) <= 2;
+        const slidePosition = Math.sign(i - current);
+
         return (
-          <div key={slide.id} className="h-full aspect-[5/6]">
-            {inLoadingZone ? (
-              <VizuCanvas designId={slide.id} images={slide.images} />
-            ) : (
-              ''
-            )}
-          </div>
+          <Design
+            key={slide.id}
+            inLoadingZone={inLoadingZone}
+            id={slide.id}
+            slidePosition={slidePosition}
+          />
         );
       })}
     </div>

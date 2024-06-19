@@ -20,6 +20,7 @@ const config: Config = {
     fontFamily: {
       sans: ['"DM Sans"', 'sans-serif'],
       mono: ['"Space Mono"', 'monospace'],
+      serif: ['"Noto Sans JP"', 'sans-serif'],
     },
   },
   plugins: [

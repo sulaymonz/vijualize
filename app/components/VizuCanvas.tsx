@@ -9,7 +9,7 @@ import LoadingSpinner from './LoadingSpinner';
 const fullConfig = resolveConfig(tailwindConfig);
 let curLoadedResNum = {};
 
-const Canvas = ({ designId, images, onClick = () => { } }) => {
+const Canvas = ({ designId, images, onClick = () => {} }) => {
   const totalResToLoad = images.length;
   const onScreenCvsRef = useRef();
   const onScreenCtxRef = useRef();
@@ -43,7 +43,8 @@ const Canvas = ({ designId, images, onClick = () => { } }) => {
         cvsArr.current[cvsIndex].context.clearRect(0, 0, 700, 840);
         cvsArr.current[cvsIndex].context.drawImage(image, 0, 0);
         cvsArr.current[cvsIndex].context.globalCompositeOperation = 'source-in';
-        const color = palette[images[i].bgColorIndex].v > 50 ? '#000000' : '#ffffff';
+        const color =
+          palette[images[i].bgColorIndex].v > 50 ? '#000000' : '#ffffff';
         cvsArr.current[cvsIndex].context.fillStyle = color;
         cvsArr.current[cvsIndex].context.fillRect(0, 0, 700, 840);
         onScreenCtxRef.current.drawImage(
@@ -130,7 +131,7 @@ const Canvas = ({ designId, images, onClick = () => { } }) => {
         </div>
       )}
       <canvas
-        className="bg-white w-[500px] h-[600px]"
+        className="w-[500px] h-[600px]"
         ref={onScreenCvsRef}
         width="1000"
         height="1200"
