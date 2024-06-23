@@ -86,7 +86,6 @@ const Sneaker = ({ inLoadingZone, id, slidePosition }) => {
         <Barcode
           className="absolute w-[20%] h-auto"
           rgb={{ r: r, g: g, b: b }}
-          // fill={`rgb(${r}, ${g}, ${b})`}
         />
       </div>
       {inLoadingZone ? <VizuCanvas designId={id} images={images} /> : ''}

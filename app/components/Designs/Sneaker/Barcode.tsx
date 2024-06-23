@@ -1,4 +1,4 @@
-const Barcode = ({ className = '', rgb: { r, g, b } }) => {
+const Barcode = ({ className = '' }) => {
   return (
     <svg
       className={className}
@@ -20,9 +20,9 @@ const Barcode = ({ className = '', rgb: { r, g, b } }) => {
             <text
               x="7.5"
               y="51.75"
-              text-anchor="middle"
-              font-family="monospace"
-              font-size="1.25"
+              textAnchor="middle"
+              fontFamily="monospace"
+              fontSize="1.25"
               fill="black"
             >
               *
@@ -38,9 +38,9 @@ const Barcode = ({ className = '', rgb: { r, g, b } }) => {
             <text
               x="23.5"
               y="51.75"
-              text-anchor="middle"
-              font-family="monospace"
-              font-size="1.25"
+              textAnchor="middle"
+              fontFamily="monospace"
+              fontSize="1.25"
               fill="black"
             >
               S
@@ -56,9 +56,9 @@ const Barcode = ({ className = '', rgb: { r, g, b } }) => {
             <text
               x="39.5"
               y="51.75"
-              text-anchor="middle"
-              font-family="monospace"
-              font-size="1.25"
+              textAnchor="middle"
+              fontFamily="monospace"
+              fontSize="1.25"
               fill="black"
             >
               N
@@ -74,9 +74,9 @@ const Barcode = ({ className = '', rgb: { r, g, b } }) => {
             <text
               x="55.5"
               y="51.75"
-              text-anchor="middle"
-              font-family="monospace"
-              font-size="1.25"
+              textAnchor="middle"
+              fontFamily="monospace"
+              fontSize="1.25"
               fill="black"
             >
               E
@@ -92,9 +92,9 @@ const Barcode = ({ className = '', rgb: { r, g, b } }) => {
             <text
               x="71.5"
               y="51.75"
-              text-anchor="middle"
-              font-family="monospace"
-              font-size="1.25"
+              textAnchor="middle"
+              fontFamily="monospace"
+              fontSize="1.25"
               fill="black"
             >
               A
@@ -110,9 +110,9 @@ const Barcode = ({ className = '', rgb: { r, g, b } }) => {
             <text
               x="87.5"
               y="51.75"
-              text-anchor="middle"
-              font-family="monospace"
-              font-size="1.25"
+              textAnchor="middle"
+              fontFamily="monospace"
+              fontSize="1.25"
               fill="black"
             >
               K
@@ -128,9 +128,9 @@ const Barcode = ({ className = '', rgb: { r, g, b } }) => {
             <text
               x="103.5"
               y="51.75"
-              text-anchor="middle"
-              font-family="monospace"
-              font-size="1.25"
+              textAnchor="middle"
+              fontFamily="monospace"
+              fontSize="1.25"
               fill="black"
             >
               E
@@ -146,9 +146,9 @@ const Barcode = ({ className = '', rgb: { r, g, b } }) => {
             <text
               x="119.5"
               y="51.75"
-              text-anchor="middle"
-              font-family="monospace"
-              font-size="1.25"
+              textAnchor="middle"
+              fontFamily="monospace"
+              fontSize="1.25"
               fill="black"
             >
               R
@@ -164,9 +164,9 @@ const Barcode = ({ className = '', rgb: { r, g, b } }) => {
             <text
               x="135.5"
               y="51.75"
-              text-anchor="middle"
-              font-family="monospace"
-              font-size="1.25"
+              textAnchor="middle"
+              fontFamily="monospace"
+              fontSize="1.25"
               fill="black"
             >
               {' '}
@@ -182,9 +182,9 @@ const Barcode = ({ className = '', rgb: { r, g, b } }) => {
             <text
               x="151.5"
               y="51.75"
-              text-anchor="middle"
-              font-family="monospace"
-              font-size="1.25"
+              textAnchor="middle"
+              fontFamily="monospace"
+              fontSize="1.25"
               fill="black"
             >
               D
@@ -200,9 +200,9 @@ const Barcode = ({ className = '', rgb: { r, g, b } }) => {
             <text
               x="167.5"
               y="51.75"
-              text-anchor="middle"
-              font-family="monospace"
-              font-size="1.25"
+              textAnchor="middle"
+              fontFamily="monospace"
+              fontSize="1.25"
               fill="black"
             >
               E
@@ -218,9 +218,9 @@ const Barcode = ({ className = '', rgb: { r, g, b } }) => {
             <text
               x="183.5"
               y="51.75"
-              text-anchor="middle"
-              font-family="monospace"
-              font-size="1.25"
+              textAnchor="middle"
+              fontFamily="monospace"
+              fontSize="1.25"
               fill="black"
             >
               S
@@ -236,9 +236,9 @@ const Barcode = ({ className = '', rgb: { r, g, b } }) => {
             <text
               x="199.5"
               y="51.75"
-              text-anchor="middle"
-              font-family="monospace"
-              font-size="1.25"
+              textAnchor="middle"
+              fontFamily="monospace"
+              fontSize="1.25"
               fill="black"
             >
               I
@@ -254,9 +254,9 @@ const Barcode = ({ className = '', rgb: { r, g, b } }) => {
             <text
               x="215.5"
               y="51.75"
-              text-anchor="middle"
-              font-family="monospace"
-              font-size="1.25"
+              textAnchor="middle"
+              fontFamily="monospace"
+              fontSize="1.25"
               fill="black"
             >
               G
@@ -272,9 +272,9 @@ const Barcode = ({ className = '', rgb: { r, g, b } }) => {
             <text
               x="231.5"
               y="51.75"
-              text-anchor="middle"
-              font-family="monospace"
-              font-size="1.25"
+              textAnchor="middle"
+              fontFamily="monospace"
+              fontSize="1.25"
               fill="black"
             >
               N
@@ -290,9 +290,9 @@ const Barcode = ({ className = '', rgb: { r, g, b } }) => {
             <text
               x="247.5"
               y="51.75"
-              text-anchor="middle"
-              font-family="monospace"
-              font-size="1.25"
+              textAnchor="middle"
+              fontFamily="monospace"
+              fontSize="1.25"
               fill="black"
             >
               *
@@ -300,28 +300,28 @@ const Barcode = ({ className = '', rgb: { r, g, b } }) => {
           </g>
           <defs>
             <linearGradient id="black" x1="0" x2="0" y1="0" y2="1">
-              <stop offset="0%" stop-color="#000" />
-              <stop offset="100%" stop-color="#000" />
+              <stop offset="0%" stopColor="#000" />
+              <stop offset="100%" stopColor="#000" />
             </linearGradient>
             <linearGradient id="navyBlue" x1="0" x2="0" y1="0" y2="1">
-              <stop offset="0%" stop-color="#00379c" />
-              <stop offset="100%" stop-color="#00379c" />
+              <stop offset="0%" stopColor="#00379c" />
+              <stop offset="100%" stopColor="#00379c" />
             </linearGradient>
             <linearGradient id="midnightGreen" x1="0" x2="0" y1="0" y2="1">
-              <stop offset="0%" stop-color="#008000" />
-              <stop offset="100%" stop-color="#008000" />
+              <stop offset="0%" stopColor="#008000" />
+              <stop offset="100%" stopColor="#008000" />
             </linearGradient>
             <linearGradient id="holo" x1="0" x2="0" y1="0" y2="1">
-              <stop offset="0%" stop-color="#ae00ff" />
-              <stop offset="100%" stop-color="#009dff" />
+              <stop offset="0%" stopColor="#ae00ff" />
+              <stop offset="100%" stopColor="#009dff" />
             </linearGradient>
             <linearGradient id="gradient" x1="0" x2="0" y1="0" y2="1">
-              <stop offset="0%" stop-color="#d85bc6" />
-              <stop offset="100%" stop-color="#5c4cff" />
+              <stop offset="0%" stopColor="#d85bc6" />
+              <stop offset="100%" stopColor="#5c4cff" />
             </linearGradient>
             <linearGradient id="neon" x1="0" x2="0" y1="0" y2="1">
-              <stop offset="0%" stop-color="#00c400" />
-              <stop offset="100%" stop-color="#00612a" />
+              <stop offset="0%" stopColor="#00c400" />
+              <stop offset="100%" stopColor="#00612a" />
             </linearGradient>
           </defs>
         </g>
