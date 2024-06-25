@@ -28,7 +28,7 @@ import { HSVtoRGB, RGBtoHEX } from '@/app/utils/converters';
 import { getRandomInt, shuffleArray } from '@/app/utils/randomizers';
 
 export default function Landing() {
-  const { palette } = useSelector((state) => state.landing);
+  const { palette, liked } = useSelector((state) => state.landing);
   const dispatch = useDispatch();
   const [curSlide, setCurSlide] = useState(0);
 
@@ -120,10 +120,22 @@ export default function Landing() {
                 </div>
               </div>
               <div className="absolute bottom-0 left-full mx-2 flex flex-col">
-                <button title="Like" className="h-[13px] my-[2px]">
-                  <FavoriteBorderOutlinedIcon
-                    style={{ width: '13px', height: '13px' }}
-                  />
+                <button
+                  title="Like"
+                  className="h-[13px] my-[2px]"
+                  onClick={() => {
+                    dispatch(landingActions.landingLikeButtonClicked());
+                  }}
+                >
+                  {liked ? (
+                    <FavoriteOutlinedIcon
+                      style={{ width: '13px', height: '13px' }}
+                    />
+                  ) : (
+                    <FavoriteBorderOutlinedIcon
+                      style={{ width: '13px', height: '13px' }}
+                    />
+                  )}
                 </button>
                 <button title="Settings" className="h-[13px] my-[2px]">
                   <SettingsOutlinedIcon

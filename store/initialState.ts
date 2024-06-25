@@ -22,6 +22,7 @@ const initialState = {
       { hex: '#faf7f0', h: 42, s: 50, v: 96 },
       { hex: '#c7998d', h: 12, s: 34, v: 67 },
     ],
+    liked: false,
   },
 };
 

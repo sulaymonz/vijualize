@@ -14,6 +14,10 @@ export default (state = initialState.landing, action) => {
         break;
       case types.LANDING_PALETTE_UPDATED:
         draft.palette = action.palette;
+        draft.liked = false;
+        break;
+      case types.LANDING_LIKE_BUTTON_CLICKED:
+        draft.liked = !state.liked;
         break;
       default:
         return state;
