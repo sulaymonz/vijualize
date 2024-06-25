@@ -19,7 +19,7 @@ const Navbar = () => {
             <li className="mr-4 lg:mr-8">
               <Link href="/">About</Link>
             </li>
-            <li className="mr-4 lg: mr-8">
+            <li className="mr-4 lg:mr-8">
               <Link href="/colorlab">Color_Lab</Link>
             </li>
           </ul>
@@ -28,9 +28,9 @@ const Navbar = () => {
             <li className="ml-4 lg:ml-8">
               <Link
                 href="/"
-                className="bg-black text-white px-3 py-1 rounded-sm"
+                className="bg-black text-white text-sm px-2 rounded-sm"
               >
-                Sign Up
+                sign_up
               </Link>
             </li>
             <li className="ml-4 lg:ml-8">

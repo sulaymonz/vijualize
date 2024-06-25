@@ -4,6 +4,15 @@ import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import * as landingActions from '../../../store/actions/landingActions';
 import RefreshIcon from '@mui/icons-material/Refresh';
+import ShuffleOutlinedIcon from '@mui/icons-material/ShuffleOutlined';
+import UndoOutlinedIcon from '@mui/icons-material/UndoOutlined';
+import RedoOutlinedIcon from '@mui/icons-material/RedoOutlined';
+import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined';
+import FavoriteOutlinedIcon from '@mui/icons-material/FavoriteOutlined';
+import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined';
+import ShareOutlinedIcon from '@mui/icons-material/ShareOutlined';
+import FullscreenOutlinedIcon from '@mui/icons-material/FullscreenOutlined';
+import FullscreenExitOutlinedIcon from '@mui/icons-material/FullscreenExitOutlined';
 import Sidebar from './Sidebar';
 // import Carousel from '../Carousel';
 import CanvasCarousel from '../CanvasCarousel';
@@ -52,11 +61,11 @@ export default function Landing() {
 
   return (
     <section className="flex rounded-3xl border h-[680px] overflow-hidden">
-      <div className="flex-none w-[130px]">
+      <div className="flex-none w-[130px] bg-[#f7f7f7]">
         <Sidebar />
       </div>
       <div className="grow flex flex-row">
-        <div className="w-1/2 flex flex-col justify-center gap-8 items-center">
+        <div className="w-1/2 flex flex-col justify-center gap-8 items-center bg-[#f7f7f7]">
           <div className="flex flex-col justify-start">
             <h1 className="text-4xl font-mono font-bold my-2">Color palette</h1>
             <h3 className="text-lg font-light">
@@ -68,119 +77,164 @@ export default function Landing() {
             </h3>
           </div>
           <div>
-            <div className="flex flex-col w-80 h-48 rounded-3xl shadow-md overflow-hidden">
-              <div className="w-full h-1/4 flex flex-row justify-center bg-white font-mono text-[0.65rem]">
-                <div className="w-1/5 h-full flex items-center justify-center">
-                  {palette[0].hex}
+            <div className="relative w-80 h-48">
+              <div className="flex flex-col w-full h-full rounded-3xl shadow-md overflow-hidden">
+                <div className="w-full h-1/4 flex flex-row justify-center bg-white font-mono text-[0.65rem]">
+                  <div className="w-1/5 h-full flex items-center justify-center">
+                    {palette[0].hex}
+                  </div>
+                  <div className="w-1/5 h-full flex items-center justify-center">
+                    {palette[1].hex}
+                  </div>
+                  <div className="w-1/5 h-full flex items-center justify-center">
+                    {palette[2].hex}
+                  </div>
+                  <div className="w-1/5 h-full flex items-center justify-center">
+                    {palette[3].hex}
+                  </div>
+                  <div className="w-1/5 h-full flex items-center justify-center">
+                    {palette[4].hex}
+                  </div>
                 </div>
-                <div className="w-1/5 h-full flex items-center justify-center">
-                  {palette[1].hex}
-                </div>
-                <div className="w-1/5 h-full flex items-center justify-center">
-                  {palette[2].hex}
-                </div>
-                <div className="w-1/5 h-full flex items-center justify-center">
-                  {palette[3].hex}
-                </div>
-                <div className="w-1/5 h-full flex items-center justify-center">
-                  {palette[4].hex}
+                <div className="w-full h-3/4 flex flex-row justify-center">
+                  <div
+                    className="w-1/5 h-full"
+                    style={{ backgroundColor: palette[0].hex }}
+                  />
+                  <div
+                    className="w-1/5 h-full"
+                    style={{ backgroundColor: palette[1].hex }}
+                  />
+                  <div
+                    className="w-1/5 h-full"
+                    style={{ backgroundColor: palette[2].hex }}
+                  />
+                  <div
+                    className="w-1/5 h-full"
+                    style={{ backgroundColor: palette[3].hex }}
+                  />
+                  <div
+                    className="w-1/5 h-full"
+                    style={{ backgroundColor: palette[4].hex }}
+                  />
                 </div>
               </div>
-              <div className="w-full h-3/4 flex flex-row justify-center">
-                <div
-                  className="w-1/5 h-full"
-                  style={{ backgroundColor: palette[0].hex }}
-                />
-                <div
-                  className="w-1/5 h-full"
-                  style={{ backgroundColor: palette[1].hex }}
-                />
-                <div
-                  className="w-1/5 h-full"
-                  style={{ backgroundColor: palette[2].hex }}
-                />
-                <div
-                  className="w-1/5 h-full"
-                  style={{ backgroundColor: palette[3].hex }}
-                />
-                <div
-                  className="w-1/5 h-full"
-                  style={{ backgroundColor: palette[4].hex }}
-                />
+              <div className="absolute bottom-0 left-full mx-2 flex flex-col">
+                <button title="Like" className="h-[13px] my-[2px]">
+                  <FavoriteBorderOutlinedIcon
+                    style={{ width: '13px', height: '13px' }}
+                  />
+                </button>
+                <button title="Settings" className="h-[13px] my-[2px]">
+                  <SettingsOutlinedIcon
+                    style={{ width: '13px', height: '13px' }}
+                  />
+                </button>
+                <button title="Share" className="h-[13px] my-[2px]">
+                  <ShareOutlinedIcon
+                    style={{ width: '13px', height: '13px' }}
+                  />
+                </button>
+                <button title="Maximize" className="h-[13px] mt-[2px] mb-2">
+                  <FullscreenOutlinedIcon
+                    style={{ width: '13px', height: '13px' }}
+                  />
+                </button>
               </div>
             </div>
-            <div className="flex flex-row justify-center my-8 text-lg font-mono cursor-pointer">
-              <RefreshIcon fontSize="large" />
-              <button
-                onClick={() => {
-                  let newPalette;
-                  const colorScheme = getRandomInt(0, 5);
-                  switch (colorScheme) {
-                    case 0:
-                      newPalette = generateMonochromePalette().map((hsv) => ({
-                        hex: RGBtoHEX(HSVtoRGB(hsv)),
-                        h: hsv.h,
-                        s: hsv.s,
-                        v: hsv.v,
-                      }));
-                      break;
-                    case 1:
-                      newPalette = generateAnalogousPalette().map((hsv) => ({
-                        hex: RGBtoHEX(HSVtoRGB(hsv)),
-                        h: hsv.h,
-                        s: hsv.s,
-                        v: hsv.v,
-                      }));
-                      break;
-                    case 2:
-                      newPalette = generateTetradicPalette().map((hsv) => ({
-                        hex: RGBtoHEX(HSVtoRGB(hsv)),
-                        h: hsv.h,
-                        s: hsv.s,
-                        v: hsv.v,
-                      }));
-                      break;
-                    case 3:
-                      newPalette = generateSquarePalette().map((hsv) => ({
-                        hex: RGBtoHEX(HSVtoRGB(hsv)),
-                        h: hsv.h,
-                        s: hsv.s,
-                        v: hsv.v,
-                      }));
-                      break;
-                    case 4:
-                      newPalette = generateSplitComplementaryPalette().map(
-                        (hsv) => ({
+            <div className="flex flex-row justify-center my-8 font-mono">
+              <div className="relative">
+                <button
+                  className="h-[21px] px-2 bg-black rounded-sm text-white"
+                  // className="text-lg"
+                  title="Regenerate"
+                  onClick={() => {
+                    let newPalette;
+                    const colorScheme = getRandomInt(0, 5);
+                    switch (colorScheme) {
+                      case 0:
+                        newPalette = generateMonochromePalette().map((hsv) => ({
                           hex: RGBtoHEX(HSVtoRGB(hsv)),
                           h: hsv.h,
                           s: hsv.s,
                           v: hsv.v,
-                        }),
-                      );
-                      break;
-                    case 5:
-                      newPalette = generateTriadicPalette().map((hsv) => ({
-                        hex: RGBtoHEX(HSVtoRGB(hsv)),
-                        h: hsv.h,
-                        s: hsv.s,
-                        v: hsv.v,
-                      }));
-                      break;
-                    default:
-                      break;
-                  }
+                        }));
+                        break;
+                      case 1:
+                        newPalette = generateAnalogousPalette().map((hsv) => ({
+                          hex: RGBtoHEX(HSVtoRGB(hsv)),
+                          h: hsv.h,
+                          s: hsv.s,
+                          v: hsv.v,
+                        }));
+                        break;
+                      case 2:
+                        newPalette = generateTetradicPalette().map((hsv) => ({
+                          hex: RGBtoHEX(HSVtoRGB(hsv)),
+                          h: hsv.h,
+                          s: hsv.s,
+                          v: hsv.v,
+                        }));
+                        break;
+                      case 3:
+                        newPalette = generateSquarePalette().map((hsv) => ({
+                          hex: RGBtoHEX(HSVtoRGB(hsv)),
+                          h: hsv.h,
+                          s: hsv.s,
+                          v: hsv.v,
+                        }));
+                        break;
+                      case 4:
+                        newPalette = generateSplitComplementaryPalette().map(
+                          (hsv) => ({
+                            hex: RGBtoHEX(HSVtoRGB(hsv)),
+                            h: hsv.h,
+                            s: hsv.s,
+                            v: hsv.v,
+                          }),
+                        );
+                        break;
+                      case 5:
+                        newPalette = generateTriadicPalette().map((hsv) => ({
+                          hex: RGBtoHEX(HSVtoRGB(hsv)),
+                          h: hsv.h,
+                          s: hsv.s,
+                          v: hsv.v,
+                        }));
+                        break;
+                      default:
+                        break;
+                    }
 
-                  // const newPalette = generateSplitComplementaryPalette().map(
-                  //   (hsv) => ({
-                  //     hex: RGBtoHEX(HSVtoRGB(hsv)),
-                  //   }),
-                  // );
+                    // const newPalette = generateSplitComplementaryPalette().map(
+                    //   (hsv) => ({
+                    //     hex: RGBtoHEX(HSVtoRGB(hsv)),
+                    //   }),
+                    // );
 
-                  dispatch(landingActions.landingPaletteUpdated(newPalette));
-                }}
-              >
-                regenerate_
-              </button>
+                    dispatch(landingActions.landingPaletteUpdated(newPalette));
+                  }}
+                >
+                  {/* <RefreshIcon fontSize="small" /> */}
+                  regenerate_
+                </button>
+                <div className="absolute top-0 left-full flex">
+                  <button className="mx-1" title="Shuffle">
+                    <ShuffleOutlinedIcon fontSize="small" />
+                  </button>
+                  <button className="mx-1" title="Undo">
+                    <UndoOutlinedIcon fontSize="small" />
+                  </button>
+                  <button
+                    className="mx-1"
+                    title="Redo"
+                    disabled
+                    style={{ opacity: '0.3' }}
+                  >
+                    <RedoOutlinedIcon fontSize="small" />
+                  </button>
+                </div>
+              </div>
             </div>
           </div>
         </div>

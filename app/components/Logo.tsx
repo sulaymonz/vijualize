@@ -4,7 +4,7 @@ const Logo = ({ onClick }) => {
   return (
     <div>
       <Link href="/" onClick={onClick}>
-        <img className="w-32" src="/images/logo.svg" />
+        <img className="w-36" src="/images/logo-old.svg" />
       </Link>
     </div>
   );
