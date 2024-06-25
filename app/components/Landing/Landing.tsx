@@ -219,7 +219,17 @@ export default function Landing() {
                   regenerate_
                 </button>
                 <div className="absolute top-0 left-full flex">
-                  <button className="mx-1" title="Shuffle">
+                  <button
+                    className="mx-1"
+                    title="Shuffle"
+                    onClick={() => {
+                      dispatch(
+                        landingActions.landingPaletteUpdated(
+                          shuffleArray(palette),
+                        ),
+                      );
+                    }}
+                  >
                     <ShuffleOutlinedIcon fontSize="small" />
                   </button>
                   <button className="mx-1" title="Undo">
