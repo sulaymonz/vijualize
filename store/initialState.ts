@@ -23,6 +23,8 @@ const initialState = {
       { hex: '#c7998d', h: 12, s: 34, v: 67 },
     ],
     liked: false,
+    undoStack: [],
+    redoStack: [],
   },
 };
 

@@ -28,7 +28,9 @@ import { HSVtoRGB, RGBtoHEX } from '@/app/utils/converters';
 import { getRandomInt, shuffleArray } from '@/app/utils/randomizers';
 
 export default function Landing() {
-  const { palette, liked } = useSelector((state) => state.landing);
+  const { palette, liked, undoStack, redoStack } = useSelector(
+    (state) => state.landing,
+  );
   const dispatch = useDispatch();
   const [curSlide, setCurSlide] = useState(0);
 
@@ -244,14 +246,25 @@ export default function Landing() {
                   >
                     <ShuffleOutlinedIcon fontSize="small" />
                   </button>
-                  <button className="mx-1" title="Undo">
+                  <button
+                    className="mx-1"
+                    title="Undo"
+                    onClick={() => {
+                      dispatch(landingActions.landingUndoClicked());
+                    }}
+                    disabled={undoStack.length === 0}
+                    style={undoStack.length === 0 ? { opacity: '0.3' } : {}}
+                  >
                     <UndoOutlinedIcon fontSize="small" />
                   </button>
                   <button
                     className="mx-1"
                     title="Redo"
-                    disabled
-                    style={{ opacity: '0.3' }}
+                    onClick={() => {
+                      dispatch(landingActions.landingRedoClicked());
+                    }}
+                    disabled={redoStack.length === 0}
+                    style={redoStack.length === 0 ? { opacity: '0.3' } : {}}
                   >
                     <RedoOutlinedIcon fontSize="small" />
                   </button>

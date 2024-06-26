@@ -12,3 +12,11 @@ export function landingPaletteUpdated(palette) {
 export function landingLikeButtonClicked() {
   return { type: types.LANDING_LIKE_BUTTON_CLICKED };
 }
+
+export function landingUndoClicked() {
+  return { type: types.LANDING_UNDO_CLICKED };
+}
+
+export function landingRedoClicked() {
+  return { type: types.LANDING_REDO_CLICKED };
+}
