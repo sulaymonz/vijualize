@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux';
 import VizuCanvas from '../../VizuCanvas';
 import Barcode from './Barcode';
 import { HSVtoRGB } from '@/app/utils/converters';
+import Hotspots from '../../Hotspots';
 
 const images = [
   {
@@ -65,6 +66,17 @@ const images = [
   },
 ];
 
+const hotspots = [
+  {
+    start: { x: 28, y: 37 },
+    end: { x: 17, y: 28 },
+  },
+  {
+    start: { x: 62, y: 41 },
+    end: { x: 80, y: 30 },
+  },
+];
+
 const Puffy = ({ inLoadingZone, id, slidePosition }) => {
   const { palette } = useSelector((state) => state.landing);
   const { r, g, b } = HSVtoRGB({ h: palette[2].h, s: 5, v: 97 });
@@ -101,10 +113,11 @@ const Puffy = ({ inLoadingZone, id, slidePosition }) => {
             </div>
           </div>
         </div>
-        <div className="absolute text-xs font-serif font-light top-[137px] right-[53px]">
+        <div className="absolute text-xs font-serif font-light top-[200px] right-[53px]">
           フ<br />ロ<br />リ<br />ス<br />ト
         </div>
       </div>
+      <Hotspots spots={hotspots} />
       {inLoadingZone ? <VizuCanvas designId={id} images={images} /> : ''}
     </div>
   );
