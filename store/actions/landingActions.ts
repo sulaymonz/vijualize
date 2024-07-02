@@ -20,3 +20,11 @@ export function landingUndoClicked() {
 export function landingRedoClicked() {
   return { type: types.LANDING_REDO_CLICKED };
 }
+
+export function landingDesignLoaded(id) {
+  return { type: types.LANDING_DESIGN_LOADED, id };
+}
+
+export function landingDesignUnmounted(id) {
+  return { type: types.LANDING_DESIGN_UNMOUNTED, id };
+}

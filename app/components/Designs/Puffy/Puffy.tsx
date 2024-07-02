@@ -82,43 +82,51 @@ const Puffy = ({ inLoadingZone, id, slidePosition }) => {
   const { r, g, b } = HSVtoRGB({ h: palette[2].h, s: 5, v: 97 });
   return (
     <div className="relative h-full aspect-[5/6]">
-      <div
-        className="absolute h-full w-full z-[-1] transition-all ease-in-out duration-[250ms]"
-        // style={{ left: `${100 * slidePosition}%` }}
-      >
-        <div
-          className="absolute w-[90%] h-[80%] bottom-0 left-[5%]"
-          style={{
-            backgroundColor: `rgb(${r}, ${g}, ${b})`,
-          }}
-        />
-        <div className="absolute w-[90%] h-[20%] top-0 left-[5%] flex flex-row font-mono">
-          <div className="basis-1/4 p-[10px] leading-none flex flex-col justify-end border-r">
-            <div className="text-xs leading-none pb-1">
-              #<br />
-              01
-              <br />
-              FLORIST_
+      {inLoadingZone && (
+        <>
+          <div
+            className="absolute h-full w-full z-[-1] transition-all ease-in-out duration-[250ms]"
+            // style={{ left: `${100 * slidePosition}%` }}
+          >
+            <div
+              className="absolute w-[90%] h-[80%] bottom-0 left-[5%]"
+              style={{
+                backgroundColor: `rgb(${r}, ${g}, ${b})`,
+              }}
+            />
+            <div className="absolute w-[90%] h-[20%] top-0 left-[5%] flex flex-row font-mono">
+              <div className="basis-1/4 p-[10px] leading-none flex flex-col justify-end border-r">
+                <div className="text-xs leading-none pb-1">
+                  #<br />
+                  01
+                  <br />
+                  FLORIST_
+                </div>
+                <div>
+                  <Barcode className="w-[112%] h-auto ml-[-6px]" />
+                </div>
+              </div>
+              <div className="basis-3/4 flex flex-col justify-end font-sans">
+                <div className="text-7xl border-b px-[10px]">PUFFER</div>
+                <div className="text-[7px] p-[10px] leading-none">
+                  The Re:Bound New Terrain Puffer is made with recycled nylon
+                  and polyester to create a reversible puffer that adapts to
+                  whatever terrain you&apos;re hustling through.
+                </div>
+              </div>
             </div>
-            <div>
-              <Barcode className="w-[112%] h-auto ml-[-6px]" />
+            <div className="absolute text-xs font-serif font-light top-[137px] right-[53px]">
+              フ<br />ロ<br />リ<br />ス<br />ト
             </div>
           </div>
-          <div className="basis-3/4 flex flex-col justify-end font-sans">
-            <div className="text-7xl border-b px-[10px]">PUFFER</div>
-            <div className="text-[7px] p-[10px] leading-none">
-              The Re:Bound New Terrain Puffer is made with recycled nylon and
-              polyester to create a reversible puffer that adapts to whatever
-              terrain you&apos;re hustling through.
-            </div>
-          </div>
-        </div>
-        <div className="absolute text-xs font-serif font-light top-[200px] right-[53px]">
-          フ<br />ロ<br />リ<br />ス<br />ト
-        </div>
-      </div>
-      <Hotspots spots={hotspots} />
-      {inLoadingZone ? <VizuCanvas designId={id} images={images} /> : ''}
+          <Hotspots
+            designId={id}
+            spots={hotspots}
+            slideIsActive={slidePosition === 0}
+          />
+          <VizuCanvas designId={id} images={images} />
+        </>
+      )}
     </div>
   );
 };

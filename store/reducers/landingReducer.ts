@@ -36,6 +36,14 @@ export default (state = initialState.landing, action) => {
           draft.palette = draft.redoStack.pop();
         }
         break;
+      case types.LANDING_DESIGN_LOADED:
+        draft.loadedDesigns.push(action.id);
+        break;
+      case types.LANDING_DESIGN_UNMOUNTED:
+        draft.loadedDesigns = state.loadedDesigns.filter(
+          (v) => v !== action.id,
+        );
+        break;
       default:
         return state;
     }

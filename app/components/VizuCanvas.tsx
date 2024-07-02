@@ -1,10 +1,11 @@
 'use client';
 
 import { useState, useEffect, useRef } from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import resolveConfig from 'tailwindcss/resolveConfig';
 import tailwindConfig from '../../tailwind.config';
 import LoadingSpinner from './LoadingSpinner';
+import * as landingActions from '../../store/actions/landingActions';
 
 const fullConfig = resolveConfig(tailwindConfig);
 let curLoadedResNum = {};
@@ -17,6 +18,7 @@ const Canvas = ({ designId, images, onClick = () => {} }) => {
   const [loading, setLoading] = useState(true);
   const [itemImages, setItemImages] = useState([]);
   const { palette } = useSelector((state) => state.landing);
+  const dispatch = useDispatch();
 
   const redrawCanvas = () => {
     let cvsIndex = 0;
@@ -78,6 +80,7 @@ const Canvas = ({ designId, images, onClick = () => {} }) => {
   useEffect(() => {
     if (curLoadedResNum[designId] === totalResToLoad) {
       setLoading(false);
+      dispatch(landingActions.landingDesignLoaded(designId));
       redrawCanvas();
     }
   }, [itemImages]);
@@ -117,6 +120,7 @@ const Canvas = ({ designId, images, onClick = () => {} }) => {
         image.removeEventListener('load', handleImageLoad);
       });
       curLoadedResNum[designId] = 0;
+      dispatch(landingActions.landingDesignUnmounted(designId));
     };
   }, []);
 

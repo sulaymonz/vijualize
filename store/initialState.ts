@@ -25,6 +25,7 @@ const initialState = {
     liked: false,
     undoStack: [],
     redoStack: [],
+    loadedDesigns: [],
   },
 };
 
